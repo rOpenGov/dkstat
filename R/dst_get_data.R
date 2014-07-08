@@ -8,7 +8,7 @@
 #' @param format for now just csv but later JSON and more.
 #' @param value_presentation for know just default
 #' @export
-dst_get_data <- function(query, table,..., lang = "en", format = "CSV", value_presentation = "Default"){
+dst_get_data <- function(query, table,..., lang = "en", format = "CSV", value_presentation = "ValueAndCode"){
   require(httr)
   require(jsonlite)
   require(stringr)
