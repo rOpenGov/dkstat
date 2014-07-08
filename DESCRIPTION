@@ -5,6 +5,10 @@ Version: 0.01
 Date: 2014-04-27
 Author: Kenneth Rose
 Maintainer: Kenneth Rose <kennethrose82@gmail.com>
-Description: This package provides a few simple functions that can be used to query the StatBank from Statistics Denmark.
-Depends: httr, jsonlite
+Description: This package provides a few simple functions that can be used to
+    query the StatBank from Statistics Denmark.
+Depends:
+    httr,
+    jsonlite
 License: GPL-2
+Roxygen: list(wrap = FALSE)

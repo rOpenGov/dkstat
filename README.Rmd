@@ -1,0 +1,114 @@
+---
+title: "Statistics Denmark StatBank API connection"
+output: 
+  md_document:
+    variant: markdown_github
+---
+
+This package connects to the [StatBank](http://www.statistikbanken.dk/statbank5a/) API from [Statistics Denmark](http://www.dst.dk).
+
+## Installation
+
+You can only install the development version from github, using Hadley Wickham's [devtools](http://cran.r-project.org/web/packages/devtools/index.html) package:
+
+```
+if(!require("devtools")) install.packages("devtools")
+library("devtools")
+install_github("krose/dkstat")
+```
+
+## Examples
+
+Here are a few simple examples that will go through the basics of requesting data from the StatBank
+and the structure of the output.  
+
+First, we'll load the library:
+
+```{r}
+library(dkstat)
+```
+
+## Meta data
+
+The dst_meta function retrieves meta data from the table you wan't to take a closer look at. It can be used to create the final request, but if you can figure out the structure of the query you can define it yourself.
+
+We'll get some meta data from the [AULAAR table](http://www.statistikbanken.dk/AULAAR). The AULAAR table has net unemployment numbers.
+
+```{r}
+aulaar_meta <- dst_meta(table = "AULAAR", lang = "en")
+```
+
+The 'dst_meta' function returns a list with 4 objects:
+- basics
+- variables
+- values 
+- basic_query
+
+### Basics
+
+Let's see what the basics contains:
+
+```{r}
+aulaar_meta$basics
+```
+
+There's a table id, a short description, a unit description and when the table was updated.
+
+### Variables
+
+The variables in the list has a short description of each variable as well as the id:
+
+```{r}
+aulaar_meta$variables
+```
+
+### Values
+
+The values is a list object of all the variable id's you can use to construct your final query:
+
+```{r}
+aulaar_meta$values
+```
+
+### Basic Query
+
+The basic query is simply a list of the available variables with the first value id for each.
+
+```{r}
+aulaar_meta$basic_query
+```
+
+## Get data
+
+Let's use the basic_query from the dst_meta list to make our first query:
+
+```{r}
+dst_get_data(query = aulaar_meta$basic_query, 
+             table = "AULAAR", 
+             lang = "en", 
+             value_presentation = "ValueAndCode")
+```
+
+This is maybe not really what you want, so let's use the basic_query to construct a new query that
+might be better. I still want to have the total and percentage unemployed, but I would like all the
+observations going back 1979. I'll now construct the final request, query the StatBank and make a plot.
+
+```{r}
+aulaar_meta$basic_query$Tid <- aulaar_meta$values$Tid$id
+
+aulaar <- dst_get_data(query = aulaar_meta$basic_query, 
+                       table = "AULAAR", 
+                       lang = "en", 
+                       format = "CSV",
+                       value_presentation = "ValueAndCode")
+
+plot(x = aulaar$Tid, 
+     y = aulaar$value, 
+     main = aulaar_meta$basics$text, 
+     xlab = aulaar_meta$variables$text[3], 
+     ylab = aulaar_meta$values$PERPCT$text[1], 
+     type = "l")
+```
+
+
+
