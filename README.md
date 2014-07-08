@@ -1,5 +1,7 @@
 This package connects to the [StatBank](http://www.statistikbanken.dk/statbank5a/) API from [Statistics Denmark](http://www.dst.dk).
 
+This package is in early *BETA* and new changes will most likely not have backward compatibility.
+
 Installation
 ------------
 
