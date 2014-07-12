@@ -9,6 +9,7 @@ Description: This package provides a few simple functions that can be used to
     query the StatBank from Statistics Denmark.
 Depends:
     httr,
-    jsonlite
+    jsonlite,
+    stringr
 License: GPL-2
 Roxygen: list(wrap = FALSE)
