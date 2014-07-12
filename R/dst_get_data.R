@@ -26,10 +26,10 @@ dst_get_data <- function(query, table,..., lang = "en", format = "CSV", value_pr
   
   dst_url$query <- lapply(X = dst_url$query, FUN = paste, collapse = ',')
   
-  data <- content(x = GET(dst_url, verbose()), as = "text", encoding = "UTF-8")
-  data <- read.csv2(textConnection(data), header = FALSE)
-  names(data) <- c(dst_names, "value")
+  dst_data <- content(x = GET(dst_url, verbose()), as = "text", encoding = "UTF-8")
+  dst_data <- read.csv2(textConnection(data), header = FALSE)
+  names(dst_data) <- c(dst_names, "value")
   
-  return(data)
+  return(dst_data)
   #   return(dst_url)
 }
