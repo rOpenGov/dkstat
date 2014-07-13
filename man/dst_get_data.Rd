@@ -4,19 +4,23 @@
 \title{This function returns the requested data from the StatBank table.
 (http://www.statistikbanken.dk/statbank5a/ or http://www.dst.dk)}
 \usage{
-dst_get_data(query, table, ..., lang = "en", format = "CSV",
+dst_get_data(table, ..., query = NULL, lang = "en", format = "CSV",
   value_presentation = "ValueAndCode")
 }
 \arguments{
+\item{table}{Table from StatBank.}
+
+\item{...}{Build your own query.}
+
 \item{request}{A request for data structured like the basic_basic_query.}
 
 \item{lang}{language. "en" for english and "da" for danish.}
 
 \item{format}{for now just csv but later JSON and more.}
 
-\item{value_presentation}{for know just default}
+\item{value_presentation}{for know just ValueAndCode}
 }
 \description{
-Get data from a table.
+Get data from a table in the StatBank.
 }
 

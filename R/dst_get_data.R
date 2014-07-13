@@ -1,7 +1,7 @@
 #' This function returns the requested data from the StatBank table.
 #' (http://www.statistikbanken.dk/statbank5a/ or http://www.dst.dk)
 #'
-#' Get data from a table.
+#' Get data from a table in the StatBank.
 #'
 #' @param table Table from StatBank.
 #' @param ... Build your own query.
@@ -25,19 +25,25 @@ dst_get_data <- function(table, ..., query = NULL, lang = "en", format = "CSV", 
     if(length(query) == 0) stop("You need to build a query in ... or supply one in query")
   }
   
+  names(query) <- toupper(names(query))
+
   dst_names <- names(query)
-  
+
   query$valuePresentation <- value_presentation
   query$lang <- lang
   
+  ## Insert request into url
   dst_url$query <- query
   
   dst_url$query <- lapply(X = dst_url$query, FUN = paste, collapse = ',')
-  
+
+  dst_url <- build_url(dst_url)
+  dst_url <- dst_correct_url(dst_url)
+  print(dst_url)
+
   dst_data <- content(x = GET(dst_url, verbose()), as = "text", encoding = "UTF-8")
-  dst_data <- read.csv2(textConnection(data), header = FALSE)
+  dst_data <- read.csv2(textConnection(dst_data), header = FALSE)
   names(dst_data) <- c(dst_names, "value")
   
   return(dst_data)
-  #   return(dst_url)
 }
