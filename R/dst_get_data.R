@@ -22,7 +22,7 @@ dst_get_data <- function(table, ..., query = NULL, lang = "en", format = "CSV", 
   ## If query is NULL, then use ... as query
   if(is.null(query)){
     query <- list(...)
-    if(length(query) == 0) stop("You need to build a query in ... or supply one in query")
+    if(length(query) == 0) stop("You need to build a query in ... or supply one to 'query'")
   }
   
   names(query) <- toupper(names(query))
