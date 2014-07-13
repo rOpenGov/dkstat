@@ -86,7 +86,7 @@ If you know the table ids from the table you can simply supply the request
 through ...
 
 ```{r}
-dst_get_data(table = "AULAAR", KØN = "TOT", PERPCT = "L10", Tid = "2013",
+dst_get_data(table = "AULAAR", KØN = "TOT", PERPCT = "L10", Tid = 2013,
              lang = "en", 
              value_presentation = "ValueAndCode")
 ```
