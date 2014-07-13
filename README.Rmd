@@ -69,7 +69,7 @@ aulaar_meta$variables
 The values is a list object of all the variable id's you can use to construct your final query:
 
 ```{r}
-aulaar_meta$values
+str(aulaar_meta$values)
 ```
 
 ### Basic Query
@@ -86,24 +86,26 @@ If you know the table ids from the table you can simply supply the request
 through ...
 
 ```{r}
-dst_get_data(table = "AULAAR", KØN = "TOT", PERPCT = "L10", Tid = 2013,
-             lang = "en", 
-             value_presentation = "ValueAndCode")
+aulaar <- dst_get_data(table = "AULAAR", KØN = "TOT", PERPCT = "L10", Tid = 2013,
+                       lang = "en", 
+                       value_presentation = "ValueAndCode")
+str(aulaar)
 ```
 
 
 Let's use the basic_query from the dst_meta list to make our first query:
 
 ```{r}
-dst_get_data(table = "AULAAR", 
-             query = aulaar_meta$basic_query,
-             lang = "en", 
-             value_presentation = "ValueAndCode")
+aulaar <- dst_get_data(table = "AULAAR", 
+                       query = aulaar_meta$basic_query,
+                       lang = "en", 
+                       value_presentation = "ValueAndCode")
+str(aulaar)
 ```
 
 This is maybe not really what you want, so let's use the basic_query to construct a new query that
 might be better. I still want to have the total and percentage unemployed, but I would like all the
-observations going back 1979. I'll now construct the final request, query the StatBank and make a plot.
+observations going back to 1979. I'll now construct the final request, query the StatBank and make a plot.
 
 ```{r}
 aulaar_meta$basic_query$Tid <- aulaar_meta$values$Tid$id
@@ -122,5 +124,13 @@ plot(x = aulaar$TID,
      type = "l")
 ```
 
+If you want the complete timeseries you can write "*" in the TID variable in the basic_query
+or like this:
 
+```{r}
+aulaar <- dst_get_data(table = "AULAAR", KØN = "TOT", PERPCT = "L10", Tid = "*",
+                       lang = "en", 
+                       value_presentation = "ValueAndCode")
+str(aulaar)
+```
 

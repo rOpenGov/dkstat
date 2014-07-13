@@ -78,57 +78,19 @@ aulaar_meta$variables
 The values is a list object of all the variable id's you can use to construct your final query:
 
 ``` {.r}
-aulaar_meta$values
+str(aulaar_meta$values)
 ```
 
-    ## $KØN
-    ##    id  text
-    ## 1 TOT Total
-    ## 2   M   Men
-    ## 3   K Women
-    ## 
-    ## $PERPCT
-    ##    id                         text
-    ## 1 L10 Per cent of the labour force
-    ## 2  L9       Unemployed (thousands)
-    ## 
-    ## $Tid
-    ##      id text
-    ## 1  1979 1979
-    ## 2  1980 1980
-    ## 3  1981 1981
-    ## 4  1982 1982
-    ## 5  1983 1983
-    ## 6  1984 1984
-    ## 7  1985 1985
-    ## 8  1986 1986
-    ## 9  1987 1987
-    ## 10 1988 1988
-    ## 11 1989 1989
-    ## 12 1990 1990
-    ## 13 1991 1991
-    ## 14 1992 1992
-    ## 15 1993 1993
-    ## 16 1994 1994
-    ## 17 1995 1995
-    ## 18 1996 1996
-    ## 19 1997 1997
-    ## 20 1998 1998
-    ## 21 1999 1999
-    ## 22 2000 2000
-    ## 23 2001 2001
-    ## 24 2002 2002
-    ## 25 2003 2003
-    ## 26 2004 2004
-    ## 27 2005 2005
-    ## 28 2006 2006
-    ## 29 2007 2007
-    ## 30 2008 2008
-    ## 31 2009 2009
-    ## 32 2010 2010
-    ## 33 2011 2011
-    ## 34 2012 2012
-    ## 35 2013 2013
+    ## List of 3
+    ##  $ KØN   :'data.frame':  3 obs. of  2 variables:
+    ##   ..$ id  : chr [1:3] "TOT" "M" "K"
+    ##   ..$ text: chr [1:3] "Total" "Men" "Women"
+    ##  $ PERPCT:'data.frame':  2 obs. of  2 variables:
+    ##   ..$ id  : chr [1:2] "L10" "L9"
+    ##   ..$ text: chr [1:2] "Per cent of the labour force" "Unemployed (thousands)"
+    ##  $ Tid   :'data.frame':  35 obs. of  2 variables:
+    ##   ..$ id  : chr [1:35] "1979" "1980" "1981" "1982" ...
+    ##   ..$ text: chr [1:35] "1979" "1980" "1981" "1982" ...
 
 ### Basic Query
 
@@ -153,27 +115,35 @@ Get data
 If you know the table ids from the table you can simply supply the request through ...
 
 ``` {.r}
-dst_get_data(table = "AULAAR", KØN = "TOT", PERPCT = "L10", Tid = "2013",
-             lang = "en", 
-             value_presentation = "ValueAndCode")
+aulaar <- dst_get_data(table = "AULAAR", KØN = "TOT", PERPCT = "L10", Tid = 2013,
+                       lang = "en", 
+                       value_presentation = "ValueAndCode")
+str(aulaar)
 ```
 
-    ##         KØN                           PERPCT  TID value
-    ## 1 Total TOT Per cent of the labour force L10 2013   4.4
+    ## 'data.frame':    1 obs. of  4 variables:
+    ##  $ KØN   : chr "Total TOT"
+    ##  $ PERPCT: chr "Per cent of the labour force L10"
+    ##  $ TID   : int 2013
+    ##  $ value : num 4.4
 
 Let's use the basic\_query from the dst\_meta list to make our first query:
 
 ``` {.r}
-dst_get_data(table = "AULAAR", 
-             query = aulaar_meta$basic_query,
-             lang = "en", 
-             value_presentation = "ValueAndCode")
+aulaar <- dst_get_data(table = "AULAAR", 
+                       query = aulaar_meta$basic_query,
+                       lang = "en", 
+                       value_presentation = "ValueAndCode")
+str(aulaar)
 ```
 
-    ##         KØN                           PERPCT  TID value
-    ## 1 Total TOT Per cent of the labour force L10 2013   4.4
+    ## 'data.frame':    1 obs. of  4 variables:
+    ##  $ KØN   : chr "Total TOT"
+    ##  $ PERPCT: chr "Per cent of the labour force L10"
+    ##  $ TID   : int 2013
+    ##  $ value : num 4.4
 
-This is maybe not really what you want, so let's use the basic\_query to construct a new query that might be better. I still want to have the total and percentage unemployed, but I would like all the observations going back 1979. I'll now construct the final request, query the StatBank and make a plot.
+This is maybe not really what you want, so let's use the basic\_query to construct a new query that might be better. I still want to have the total and percentage unemployed, but I would like all the observations going back to 1979. I'll now construct the final request, query the StatBank and make a plot.
 
 ``` {.r}
 aulaar_meta$basic_query$Tid <- aulaar_meta$values$Tid$id
@@ -193,3 +163,18 @@ plot(x = aulaar$TID,
 ```
 
 ![plot of chunk unnamed-chunk-9](./README_files/figure-markdown_github/unnamed-chunk-9.png)
+
+If you want the complete timeseries you can write "\*" in the TID variable in the basic\_query or like this:
+
+``` {.r}
+aulaar <- dst_get_data(table = "AULAAR", KØN = "TOT", PERPCT = "L10", Tid = "*",
+                       lang = "en", 
+                       value_presentation = "ValueAndCode")
+str(aulaar)
+```
+
+    ## 'data.frame':    35 obs. of  4 variables:
+    ##  $ KØN   : chr  "Total TOT" "Total TOT" "Total TOT" "Total TOT" ...
+    ##  $ PERPCT: chr  "Per cent of the labour force L10" "Per cent of the labour force L10" "Per cent of the labour force L10" "Per cent of the labour force L10" ...
+    ##  $ TID   : int  1979 1980 1981 1982 1983 1984 1985 1986 1987 1988 ...
+    ##  $ value : num  6.1 6.9 8.9 9.5 10 9.6 8.6 7.5 7.5 8.3 ...
