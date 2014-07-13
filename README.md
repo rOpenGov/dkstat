@@ -22,9 +22,6 @@ First, we'll load the library:
 library(dkstat)
 ```
 
-    ## Loading required package: httr
-    ## Loading required package: jsonlite
-
 Meta data
 ---------
 
@@ -153,18 +150,27 @@ aulaar_meta$basic_query
 Get data
 --------
 
-Let's use the basic\_query from the dst\_meta list to make our first query:
+If you know the table ids from the table you can simply supply the request through ...
 
 ``` {.r}
-dst_get_data(query = aulaar_meta$basic_query, 
-             table = "AULAAR", 
+dst_get_data(table = "AULAAR", KØN = "TOT", PERPCT = "L10", Tid = "2013",
              lang = "en", 
              value_presentation = "ValueAndCode")
 ```
 
-    ## Loading required package: stringr
+    ##         KØN                           PERPCT  TID value
+    ## 1 Total TOT Per cent of the labour force L10 2013   4.4
 
-    ##         KØN                           PERPCT  Tid value
+Let's use the basic\_query from the dst\_meta list to make our first query:
+
+``` {.r}
+dst_get_data(table = "AULAAR", 
+             query = aulaar_meta$basic_query,
+             lang = "en", 
+             value_presentation = "ValueAndCode")
+```
+
+    ##         KØN                           PERPCT  TID value
     ## 1 Total TOT Per cent of the labour force L10 2013   4.4
 
 This is maybe not really what you want, so let's use the basic\_query to construct a new query that might be better. I still want to have the total and percentage unemployed, but I would like all the observations going back 1979. I'll now construct the final request, query the StatBank and make a plot.
@@ -172,18 +178,18 @@ This is maybe not really what you want, so let's use the basic\_query to constru
 ``` {.r}
 aulaar_meta$basic_query$Tid <- aulaar_meta$values$Tid$id
 
-aulaar <- dst_get_data(query = aulaar_meta$basic_query, 
-                       table = "AULAAR", 
+aulaar <- dst_get_data(table = "AULAAR", 
+                       query = aulaar_meta$basic_query, 
                        lang = "en", 
                        format = "CSV",
                        value_presentation = "ValueAndCode")
 
-plot(x = aulaar$Tid, 
+plot(x = aulaar$TID, 
      y = aulaar$value, 
-     main = aulaar_meta$basics$text, 
-     xlab = aulaar_meta$variables$text[3], 
-     ylab = aulaar_meta$values$PERPCT$text[1], 
+     main = "Unemployment", 
+     xlab = "Year", 
+     ylab = "Pct", 
      type = "l")
 ```
 
-![plot of chunk unnamed-chunk-8](./README_files/figure-markdown_github/unnamed-chunk-8.png)
+![plot of chunk unnamed-chunk-9](./README_files/figure-markdown_github/unnamed-chunk-9.png)

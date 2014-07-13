@@ -26,7 +26,7 @@ and the structure of the output.
 
 First, we'll load the library:
 
-```{r}
+```{r, message=FALSE}
 library(dkstat)
 ```
 
@@ -82,11 +82,21 @@ aulaar_meta$basic_query
 
 ## Get data
 
+If you know the table ids from the table you can simply supply the request
+through ...
+
+```{r}
+dst_get_data(table = "AULAAR", KØN = "TOT", PERPCT = "L10", Tid = "2013",
+             lang = "en", 
+             value_presentation = "ValueAndCode")
+```
+
+
 Let's use the basic_query from the dst_meta list to make our first query:
 
 ```{r}
-dst_get_data(query = aulaar_meta$basic_query, 
-             table = "AULAAR", 
+dst_get_data(table = "AULAAR", 
+             query = aulaar_meta$basic_query,
              lang = "en", 
              value_presentation = "ValueAndCode")
 ```
@@ -98,17 +108,17 @@ observations going back 1979. I'll now construct the final request, query the St
 ```{r}
 aulaar_meta$basic_query$Tid <- aulaar_meta$values$Tid$id
 
-aulaar <- dst_get_data(query = aulaar_meta$basic_query, 
-                       table = "AULAAR", 
+aulaar <- dst_get_data(table = "AULAAR", 
+                       query = aulaar_meta$basic_query, 
                        lang = "en", 
                        format = "CSV",
                        value_presentation = "ValueAndCode")
 
-plot(x = aulaar$Tid, 
+plot(x = aulaar$TID, 
      y = aulaar$value, 
-     main = aulaar_meta$basics$text, 
-     xlab = aulaar_meta$variables$text[3], 
-     ylab = aulaar_meta$values$PERPCT$text[1], 
+     main = "Unemployment", 
+     xlab = "Year", 
+     ylab = "Pct", 
      type = "l")
 ```
 
