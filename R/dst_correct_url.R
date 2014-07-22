@@ -3,8 +3,6 @@
 #' @param url A build url.
 #' @export
 dst_correct_url <- function(url){
-  require(stringr)
-
   url <- str_replace_all(string = url, pattern = "%C6", replacement = "%C3%86") # Æ
   url <- str_replace_all(string = url, pattern = "%D8", replacement = "%C3%98") # Ø
   url <- str_replace_all(string = url, pattern = "%C5", replacement = "%C3%85") # Å

@@ -9,9 +9,6 @@
 #' @param language You can choose "en" for english or "da" for danish.
 #' @export
 dst_meta <- function(table, ..., lang = "en"){
-  require(jsonlite)
-  require(httr)
-  
   ## Create and parse url
   dkstat_url <- paste0("http://api.statbank.dk/v1/tableinfo/", table, "?")
   dkstat_url <- parse_url(url = dkstat_url)
