@@ -5,7 +5,7 @@
 #'
 #' @param table Table from StatBank.
 #' @param ... Build your own query.
-#' @param request A request for data structured like the basic_basic_query.
+#' @param query A request for data structured like the basic_basic_query.
 #' @param lang language. "en" for english and "da" for danish.
 #' @param format for now just csv but later JSON and more.
 #' @param value_presentation for know just ValueAndCode

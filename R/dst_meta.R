@@ -6,7 +6,8 @@
 #' and returns a JSON object with the information.
 #'
 #' @param table The name of the table you want meta data for.
-#' @param language You can choose "en" for english or "da" for danish.
+#' @param ... Ignored.
+#' @param lang You can choose "en" for english or "da" for danish.
 #' @export
 dst_meta <- function(table, ..., lang = "en"){
   ## Create and parse url
@@ -21,7 +22,7 @@ dst_meta <- function(table, ..., lang = "en"){
   meta <- GET(url = dkstat_url)
   
   ## Parse from JSON
-  meta <- jsonlite::fromJSON(txt=content(meta, as="text"),simplifyDataFrame=TRUE)
+  meta <- fromJSON(txt=content(meta, as="text"),simplifyDataFrame=TRUE)
   
   ## Structure results
   meta <- dst_meta_parse(meta, lang)

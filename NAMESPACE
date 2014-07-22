@@ -1,4 +1,7 @@
 import(httr)
 import(jsonlite)
 import(stringr)
-exportPattern("^[[:alpha:]]+")
+export(dst_correct_url)
+export(dst_get_data)
+export(dst_meta)
+export(dst_meta_parse)
