@@ -5,16 +5,12 @@
 #'
 #' @param table Table from StatBank.
 #' @param ... Build your own query.
-#' @param request A request for data structured like the basic_basic_query.
+#' @param query A request for data structured like the basic_basic_query.
 #' @param lang language. "en" for english and "da" for danish.
 #' @param format for now just csv but later JSON and more.
 #' @param value_presentation for know just ValueAndCode
 #' @export
 dst_get_data <- function(table, ..., query = NULL, lang = "en", format = "CSV", value_presentation = "ValueAndCode"){
-  require(httr)
-  require(jsonlite)
-  require(stringr)
-  
   dst_url <- paste0("http://api.statbank.dk/v1/data/", table, "/", format, "?")
   
   dst_url <- parse_url(url = dst_url)

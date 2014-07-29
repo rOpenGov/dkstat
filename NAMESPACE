@@ -1,1 +1,7 @@
-exportPattern("^[[:alpha:]]+")
+import(httr)
+import(jsonlite)
+import(stringr)
+export(dst_correct_url)
+export(dst_get_data)
+export(dst_meta)
+export(dst_meta_parse)
