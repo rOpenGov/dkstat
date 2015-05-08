@@ -16,7 +16,7 @@ You can only install the development version from github, using Hadley Wickham's
 ```
 if(!require("devtools")) install.packages("devtools")
 library("devtools")
-install_github("krose/dkstat")
+install_github("rOpenGov/dkstat")
 ```
 
 ## Examples
