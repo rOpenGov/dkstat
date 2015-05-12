@@ -9,7 +9,7 @@ You can only install the development version from github, using Hadley Wickham's
 
     if(!require("devtools")) install.packages("devtools")
     library("devtools")
-    install_github("krose/dkstat")
+    install_github("rOpenGov/dkstat")
 
 Examples
 --------
@@ -18,7 +18,7 @@ Here are a few simple examples that will go through the basics of requesting dat
 
 First, we'll load the library:
 
-``` {.r}
+``` r
 library(dkstat)
 ```
 
@@ -29,7 +29,7 @@ The dst\_meta function retrieves meta data from the table you wan't to take a cl
 
 We'll get some meta data from the [AULAAR table](http://www.statistikbanken.dk/AULAAR). The AULAAR table has net unemployment numbers.
 
-``` {.r}
+``` r
 aulaar_meta <- dst_meta(table = "AULAAR", lang = "en")
 ```
 
@@ -39,7 +39,7 @@ The 'dst\_meta' function returns a list with 4 objects: - basics - variables - v
 
 Let's see what the basics contains:
 
-``` {.r}
+``` r
 aulaar_meta$basics
 ```
 
@@ -64,7 +64,7 @@ There's a table id, a short description, a unit description and when the table w
 
 The variables in the list has a short description of each variable as well as the id:
 
-``` {.r}
+``` r
 aulaar_meta$variables
 ```
 
@@ -77,7 +77,7 @@ aulaar_meta$variables
 
 The values is a list object of all the variable id's you can use to construct your final query:
 
-``` {.r}
+``` r
 str(aulaar_meta$values)
 ```
 
@@ -96,7 +96,7 @@ str(aulaar_meta$values)
 
 The basic query is simply a list of the available variables with the first value id for each.
 
-``` {.r}
+``` r
 aulaar_meta$basic_query
 ```
 
@@ -114,22 +114,22 @@ Get data
 
 If you know the table ids from the table you can simply supply the request through ...
 
-``` {.r}
+``` r
 aulaar <- dst_get_data(table = "AULAAR", KØN = "TOT", PERPCT = "L10", Tid = 2013,
                        lang = "en", 
                        value_presentation = "ValueAndCode")
 str(aulaar)
 ```
 
-    ## 'data.frame':    1 obs. of  4 variables:
-    ##  $ KØN   : chr "Total TOT"
-    ##  $ PERPCT: chr "Per cent of the labour force L10"
-    ##  $ TID   : int 2013
-    ##  $ value : num 4.4
+    ## 'data.frame':    2 obs. of  4 variables:
+    ##  $ KØN   : chr  "KØN" "Total TOT"
+    ##  $ PERPCT: chr  "PERPCT" "Per cent of the labour force L10"
+    ##  $ TID   : chr  "TID" "2013"
+    ##  $ value : chr  "INDHOLD" "4.4"
 
 Let's use the basic\_query from the dst\_meta list to make our first query:
 
-``` {.r}
+``` r
 aulaar <- dst_get_data(table = "AULAAR", 
                        query = aulaar_meta$basic_query,
                        lang = "en", 
@@ -137,15 +137,15 @@ aulaar <- dst_get_data(table = "AULAAR",
 str(aulaar)
 ```
 
-    ## 'data.frame':    1 obs. of  4 variables:
-    ##  $ KØN   : chr "Total TOT"
-    ##  $ PERPCT: chr "Per cent of the labour force L10"
-    ##  $ TID   : int 2013
-    ##  $ value : num 4.4
+    ## 'data.frame':    2 obs. of  4 variables:
+    ##  $ KØN   : chr  "KØN" "Total TOT"
+    ##  $ PERPCT: chr  "PERPCT" "Per cent of the labour force L10"
+    ##  $ TID   : chr  "TID" "2013"
+    ##  $ value : chr  "INDHOLD" "4.4"
 
 This is maybe not really what you want, so let's use the basic\_query to construct a new query that might be better. I still want to have the total and percentage unemployed, but I would like all the observations going back to 1979. I'll now construct the final request, query the StatBank and make a plot.
 
-``` {.r}
+``` r
 aulaar_meta$basic_query$Tid <- aulaar_meta$values$Tid$id
 
 aulaar <- dst_get_data(table = "AULAAR", 
@@ -162,19 +162,25 @@ plot(x = aulaar$TID,
      type = "l")
 ```
 
-![plot of chunk unnamed-chunk-9](./README_files/figure-markdown_github/unnamed-chunk-9.png)
+    ## Warning in xy.coords(x, y, xlabel, ylabel, log): NAs introduced by
+    ## coercion
+
+    ## Warning in xy.coords(x, y, xlabel, ylabel, log): NAs introduced by
+    ## coercion
+
+![](README_files/figure-markdown_github/unnamed-chunk-9-1.png)
 
 If you want the complete timeseries you can write "\*" in the TID variable in the basic\_query or like this:
 
-``` {.r}
+``` r
 aulaar <- dst_get_data(table = "AULAAR", KØN = "TOT", PERPCT = "L10", Tid = "*",
                        lang = "en", 
                        value_presentation = "ValueAndCode")
 str(aulaar)
 ```
 
-    ## 'data.frame':    35 obs. of  4 variables:
-    ##  $ KØN   : chr  "Total TOT" "Total TOT" "Total TOT" "Total TOT" ...
-    ##  $ PERPCT: chr  "Per cent of the labour force L10" "Per cent of the labour force L10" "Per cent of the labour force L10" "Per cent of the labour force L10" ...
-    ##  $ TID   : int  1979 1980 1981 1982 1983 1984 1985 1986 1987 1988 ...
-    ##  $ value : num  6.1 6.9 8.9 9.5 10 9.6 8.6 7.5 7.5 8.3 ...
+    ## 'data.frame':    36 obs. of  4 variables:
+    ##  $ KØN   : chr  "KØN" "Total TOT" "Total TOT" "Total TOT" ...
+    ##  $ PERPCT: chr  "PERPCT" "Per cent of the labour force L10" "Per cent of the labour force L10" "Per cent of the labour force L10" ...
+    ##  $ TID   : chr  "TID" "1979" "1980" "1981" ...
+    ##  $ value : chr  "INDHOLD" "6.1" "6.9" "8.9" ...
