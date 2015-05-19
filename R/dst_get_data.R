@@ -36,8 +36,8 @@ dst_get_data <- function(table, ..., query = NULL, lang = "en", format = "CSV", 
   dst_url <- build_url(dst_url)
   dst_url <- dst_correct_url(dst_url)
   
-  dst_data <- content(x = GET(dst_url, verbose()), as = "text", encoding = "UTF-8")
-  dst_data <- read.csv2(textConnection(dst_data), header = FALSE, stringsAsFactors = FALSE, dec = ".")
+  dst_data <- content(x = GET(dst_url), as = "text", encoding = "UTF-8")
+  dst_data <- read.csv2(textConnection(dst_data, encoding = "UTF-8"), stringsAsFactors = FALSE, dec = ".")
   names(dst_data) <- c(dst_names, "value")
   
   return(dst_data)
