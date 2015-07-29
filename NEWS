@@ -1,0 +1,8 @@
+
+
+# Changes TO v0.02
+
+  * Added helper function to parse the dates from the DST.
+  * Added param in dst_get_data called parse_dst_tid to determine if the user wants to parse the dates. The default is TRUE.
+  * Added NEWS
+
