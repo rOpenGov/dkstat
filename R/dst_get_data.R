@@ -37,7 +37,7 @@ dst_get_data <- function(table, ..., query = NULL, parse_dst_tid = TRUE, lang = 
   dst_url <- dst_correct_url(dst_url)
   
   dst_data <- content(x = GET(dst_url), as = "text", encoding = "UTF-8")
-  dst_data <- read.csv2(textConnection(dst_data, encoding = "UTF-8"), stringsAsFactors = FALSE, dec = ".")
+  dst_data <- read.csv2(text = dst_data, stringsAsFactors = FALSE, dec = ".")
   names(dst_data) <- c(dst_names, "value")
   
   # Parse the dates if param is TRUE
