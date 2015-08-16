@@ -8,7 +8,6 @@
 #'
 #' @param meta The returned meta data from the function meta_dst.
 #' @param lang The language from the orignal dst_meta function (due to an error in the API)
-#' @export
 dst_meta_parse <- function(meta, lang){
   
   basics_names <- c("id", "text", "description", 

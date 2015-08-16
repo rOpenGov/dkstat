@@ -56,7 +56,7 @@ aulaar_meta$basics
     ## [1] "Number"
     ## 
     ## $updated
-    ## [1] "2014-06-04T09:00:00"
+    ## [1] "2015-06-19T09:00:00"
 
 There's a table id, a short description, a unit description and when the table was updated.
 
@@ -88,9 +88,9 @@ str(aulaar_meta$values)
     ##  $ PERPCT:'data.frame':  2 obs. of  2 variables:
     ##   ..$ id  : chr [1:2] "L10" "L9"
     ##   ..$ text: chr [1:2] "Per cent of the labour force" "Unemployed (thousands)"
-    ##  $ Tid   :'data.frame':  35 obs. of  2 variables:
-    ##   ..$ id  : chr [1:35] "1979" "1980" "1981" "1982" ...
-    ##   ..$ text: chr [1:35] "1979" "1980" "1981" "1982" ...
+    ##  $ Tid   :'data.frame':  36 obs. of  2 variables:
+    ##   ..$ id  : chr [1:36] "1979" "1980" "1981" "1982" ...
+    ##   ..$ text: chr [1:36] "1979" "1980" "1981" "1982" ...
 
 ### Basic Query
 
@@ -107,7 +107,7 @@ aulaar_meta$basic_query
     ## [1] "L10"
     ## 
     ## $Tid
-    ## [1] "2013"
+    ## [1] "2014"
 
 Get data
 --------
@@ -121,11 +121,11 @@ aulaar <- dst_get_data(table = "AULAAR", KØN = "TOT", PERPCT = "L10", Tid = 201
 str(aulaar)
 ```
 
-    ## 'data.frame':    2 obs. of  4 variables:
-    ##  $ KØN   : chr  "KØN" "Total TOT"
-    ##  $ PERPCT: chr  "PERPCT" "Per cent of the labour force L10"
-    ##  $ TID   : chr  "TID" "2013"
-    ##  $ value : chr  "INDHOLD" "4.4"
+    ## 'data.frame':    1 obs. of  4 variables:
+    ##  $ KØN   : chr "Total"
+    ##  $ PERPCT: chr "Per cent of the labour force"
+    ##  $ TID   : POSIXct, format: "2013-01-01"
+    ##  $ value : num 4.4
 
 Let's use the basic\_query from the dst\_meta list to make our first query:
 
@@ -137,11 +137,11 @@ aulaar <- dst_get_data(table = "AULAAR",
 str(aulaar)
 ```
 
-    ## 'data.frame':    2 obs. of  4 variables:
-    ##  $ KØN   : chr  "KØN" "Total TOT"
-    ##  $ PERPCT: chr  "PERPCT" "Per cent of the labour force L10"
-    ##  $ TID   : chr  "TID" "2013"
-    ##  $ value : chr  "INDHOLD" "4.4"
+    ## 'data.frame':    1 obs. of  4 variables:
+    ##  $ KØN   : chr "Total"
+    ##  $ PERPCT: chr "Per cent of the labour force"
+    ##  $ TID   : POSIXct, format: "2014-01-01"
+    ##  $ value : num 4
 
 This is maybe not really what you want, so let's use the basic\_query to construct a new query that might be better. I still want to have the total and percentage unemployed, but I would like all the observations going back to 1979. I'll now construct the final request, query the StatBank and make a plot.
 
@@ -162,12 +162,6 @@ plot(x = aulaar$TID,
      type = "l")
 ```
 
-    ## Warning in xy.coords(x, y, xlabel, ylabel, log): NAs introduced by
-    ## coercion
-
-    ## Warning in xy.coords(x, y, xlabel, ylabel, log): NAs introduced by
-    ## coercion
-
 ![](README_files/figure-markdown_github/unnamed-chunk-9-1.png)
 
 If you want the complete timeseries you can write "\*" in the TID variable in the basic\_query or like this:
@@ -180,7 +174,7 @@ str(aulaar)
 ```
 
     ## 'data.frame':    36 obs. of  4 variables:
-    ##  $ KØN   : chr  "KØN" "Total TOT" "Total TOT" "Total TOT" ...
-    ##  $ PERPCT: chr  "PERPCT" "Per cent of the labour force L10" "Per cent of the labour force L10" "Per cent of the labour force L10" ...
-    ##  $ TID   : chr  "TID" "1979" "1980" "1981" ...
-    ##  $ value : chr  "INDHOLD" "6.1" "6.9" "8.9" ...
+    ##  $ KØN   : chr  "Total" "Total" "Total" "Total" ...
+    ##  $ PERPCT: chr  "Per cent of the labour force" "Per cent of the labour force" "Per cent of the labour force" "Per cent of the labour force" ...
+    ##  $ TID   : POSIXct, format: "1979-01-01" "1980-01-01" ...
+    ##  $ value : num  6.1 6.9 8.9 9.5 10 9.6 8.6 7.5 7.5 8.3 ...

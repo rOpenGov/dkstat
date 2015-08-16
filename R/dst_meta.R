@@ -12,17 +12,18 @@
 dst_meta <- function(table, ..., lang = "en"){
   ## Create and parse url
   dkstat_url <- paste0("http://api.statbank.dk/v1/tableinfo/", table, "?")
-  dkstat_url <- parse_url(url = dkstat_url)
+  dkstat_url <- httr::parse_url(url = dkstat_url)
   
   ## Insert query
   dkstat_url$query <- list("lang" = lang,
                            "format" = "JSON")
   
   ## Get data
-  meta <- GET(url = dkstat_url)
+  meta <- httr::GET(url = dkstat_url)
   
   ## Parse from JSON
-  meta <- fromJSON(txt=content(meta, as="text"),simplifyDataFrame=TRUE)
+  meta <- jsonlite::fromJSON(txt=httr::content(meta, as="text"),
+                             simplifyDataFrame=TRUE)
   
   ## Structure results
   meta <- dst_meta_parse(meta, lang)

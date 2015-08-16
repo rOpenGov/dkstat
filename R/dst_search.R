@@ -5,7 +5,6 @@
 #' @param field Character string. 
 #' @param use_cache A logical scalar. Should the function call Statbank or use a (possibly outdated) saved version of their tables? 
 #' @export
-
 dst_search <- function(string = "gpd", field = "text", use_cache = NULL){
   if (is.null(use_cache)) {
     url <- httr::parse_url("http://api.statbank.dk/v1/tables")
