@@ -6,7 +6,7 @@
 (http://www.statistikbanken.dk/statbank5a/ or http://www.dst.dk)}
 \usage{
 dst_get_data(table, ..., query = NULL, parse_dst_tid = TRUE, lang = "en",
-  format = "CSV", value_presentation = "ValueAndCode")
+  meta_data = NULL, format = "CSV", value_presentation = "ValueAndCode")
 }
 \arguments{
 \item{table}{Table from StatBank.}
@@ -19,7 +19,9 @@ dst_get_data(table, ..., query = NULL, parse_dst_tid = TRUE, lang = "en",
 
 \item{format}{for now just csv but later JSON and more.}
 
-\item{value_presentation}{for know just ValueAndCode}
+\item{value_presentation}{for now, just ValueAndCode}
+
+\item{meta}{Meta data for the table. If NULL the meta data will be requested.}
 }
 \description{
 Get data from a table in the StatBank.

@@ -72,13 +72,6 @@ The values is a list object of all the variable id's you can use to construct yo
 str(aulaar_meta$values)
 ```
 
-### Basic Query
-
-The basic query is simply a list of the available variables with the first value id for each.
-
-```{r}
-aulaar_meta$basic_query
-```
 
 ## Get data
 
@@ -86,51 +79,44 @@ If you know the table ids from the table you can simply supply the request
 through ...
 
 ```{r}
-aulaar <- dst_get_data(table = "AULAAR", KØN = "TOT", PERPCT = "L10", Tid = 2013,
+aulaar <- dst_get_data(table = "AULAAR", KØN = "Total", PERPCT = "Per cent of the labour force", Tid = 2013,
                        lang = "en", 
                        value_presentation = "ValueAndCode")
 str(aulaar)
 ```
 
 
-Let's use the basic_query from the dst_meta list to make our first query:
+In the above request I don't supply the meta_data to the dst_get_data function, but this is possible
+as I will show below. 
+
+Let's query the statbank using more than one value for each variable.
 
 ```{r}
-aulaar <- dst_get_data(table = "AULAAR", 
-                       query = aulaar_meta$basic_query,
-                       lang = "en", 
-                       value_presentation = "ValueAndCode")
-str(aulaar)
+
+folk1_meta <- dst_meta("folk1", lang = "da")
+
+str(dst_get_data(table = "folk1", 
+             OMRÅDE = c("Hele landet", "København", "Frederiksberg", "Odense"), 
+             STATSB = "Danmark", 
+             TID = "*", 
+             lang = "da", 
+             meta_data = folk1_meta))
+
 ```
 
-This is maybe not really what you want, so let's use the basic_query to construct a new query that
-might be better. I still want to have the total and percentage unemployed, but I would like all the
-observations going back to 1979. I'll now construct the final request, query the StatBank and make a plot.
+
+
+I can also build a query beforehand and then use the query in the query parameter.
 
 ```{r}
-aulaar_meta$basic_query$Tid <- aulaar_meta$values$Tid$id
 
-aulaar <- dst_get_data(table = "AULAAR", 
-                       query = aulaar_meta$basic_query, 
-                       lang = "en", 
-                       format = "CSV",
-                       value_presentation = "ValueAndCode")
+my_query <- list(OMRÅDE = c("Hele landet", "København", "Frederiksberg", "Odense"),
+                 STATSB = "Danmark",
+                 TID = "*")
 
-plot(x = aulaar$TID, 
-     y = aulaar$value, 
-     main = "Unemployment", 
-     xlab = "Year", 
-     ylab = "Pct", 
-     type = "l")
+str(dst_get_data(table = "folk1", query = my_query, lang = "da"))
+
 ```
 
-If you want the complete timeseries you can write "*" in the TID variable in the basic_query
-or like this:
-
-```{r}
-aulaar <- dst_get_data(table = "AULAAR", KØN = "TOT", PERPCT = "L10", Tid = "*",
-                       lang = "en", 
-                       value_presentation = "ValueAndCode")
-str(aulaar)
-```
+If you want the complete timeseries you can write "*" in the TID variable in your query.
 

@@ -1,4 +1,7 @@
+# Changes to v0.04
 
+  * I removed the basic$query from the returned meta data
+  * You can't create a query from the values$var$id anymore, but only from the text.
 
 # Changes To v0.03
 

@@ -92,30 +92,13 @@ str(aulaar_meta$values)
     ##   ..$ id  : chr [1:36] "1979" "1980" "1981" "1982" ...
     ##   ..$ text: chr [1:36] "1979" "1980" "1981" "1982" ...
 
-### Basic Query
-
-The basic query is simply a list of the available variables with the first value id for each.
-
-``` r
-aulaar_meta$basic_query
-```
-
-    ## $KØN
-    ## [1] "TOT"
-    ## 
-    ## $PERPCT
-    ## [1] "L10"
-    ## 
-    ## $Tid
-    ## [1] "2014"
-
 Get data
 --------
 
 If you know the table ids from the table you can simply supply the request through ...
 
 ``` r
-aulaar <- dst_get_data(table = "AULAAR", KØN = "TOT", PERPCT = "L10", Tid = 2013,
+aulaar <- dst_get_data(table = "AULAAR", KØN = "Total", PERPCT = "Per cent of the labour force", Tid = 2013,
                        lang = "en", 
                        value_presentation = "ValueAndCode")
 str(aulaar)
@@ -127,54 +110,41 @@ str(aulaar)
     ##  $ TID   : POSIXct, format: "2013-01-01"
     ##  $ value : num 4.4
 
-Let's use the basic\_query from the dst\_meta list to make our first query:
+In the above request I don't supply the meta\_data to the dst\_get\_data function, but this is possible as I will show below.
+
+Let's query the statbank using more than one value for each variable.
 
 ``` r
-aulaar <- dst_get_data(table = "AULAAR", 
-                       query = aulaar_meta$basic_query,
-                       lang = "en", 
-                       value_presentation = "ValueAndCode")
-str(aulaar)
+folk1_meta <- dst_meta("folk1", lang = "da")
+
+str(dst_get_data(table = "folk1", 
+             OMRÅDE = c("Hele landet", "København", "Frederiksberg", "Odense"), 
+             STATSB = "Danmark", 
+             TID = "*", 
+             lang = "da", 
+             meta_data = folk1_meta))
 ```
 
-    ## 'data.frame':    1 obs. of  4 variables:
-    ##  $ KØN   : chr "Total"
-    ##  $ PERPCT: chr "Per cent of the labour force"
-    ##  $ TID   : POSIXct, format: "2014-01-01"
-    ##  $ value : num 4
+    ## 'data.frame':    124 obs. of  4 variables:
+    ##  $ OMRÅDE: chr  "Hele landet" "Hele landet" "Hele landet" "Hele landet" ...
+    ##  $ STATSB: chr  "Danmark" "Danmark" "Danmark" "Danmark" ...
+    ##  $ TID   : POSIXct, format: "2008-01-01" "2008-04-01" ...
+    ##  $ value : int  5177301 5180007 5185500 5190271 5191263 5192575 5198180 5202378 5204798 5205473 ...
 
-This is maybe not really what you want, so let's use the basic\_query to construct a new query that might be better. I still want to have the total and percentage unemployed, but I would like all the observations going back to 1979. I'll now construct the final request, query the StatBank and make a plot.
+I can also build a query beforehand and then use the query in the query parameter.
 
 ``` r
-aulaar_meta$basic_query$Tid <- aulaar_meta$values$Tid$id
+my_query <- list(OMRÅDE = c("Hele landet", "København", "Frederiksberg", "Odense"),
+                 STATSB = "Danmark",
+                 TID = "*")
 
-aulaar <- dst_get_data(table = "AULAAR", 
-                       query = aulaar_meta$basic_query, 
-                       lang = "en", 
-                       format = "CSV",
-                       value_presentation = "ValueAndCode")
-
-plot(x = aulaar$TID, 
-     y = aulaar$value, 
-     main = "Unemployment", 
-     xlab = "Year", 
-     ylab = "Pct", 
-     type = "l")
+str(dst_get_data(table = "folk1", query = my_query, lang = "da"))
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-9-1.png)
+    ## 'data.frame':    124 obs. of  4 variables:
+    ##  $ OMRÅDE: chr  "Hele landet" "Hele landet" "Hele landet" "Hele landet" ...
+    ##  $ STATSB: chr  "Danmark" "Danmark" "Danmark" "Danmark" ...
+    ##  $ TID   : POSIXct, format: "2008-01-01" "2008-04-01" ...
+    ##  $ value : int  5177301 5180007 5185500 5190271 5191263 5192575 5198180 5202378 5204798 5205473 ...
 
-If you want the complete timeseries you can write "\*" in the TID variable in the basic\_query or like this:
-
-``` r
-aulaar <- dst_get_data(table = "AULAAR", KØN = "TOT", PERPCT = "L10", Tid = "*",
-                       lang = "en", 
-                       value_presentation = "ValueAndCode")
-str(aulaar)
-```
-
-    ## 'data.frame':    36 obs. of  4 variables:
-    ##  $ KØN   : chr  "Total" "Total" "Total" "Total" ...
-    ##  $ PERPCT: chr  "Per cent of the labour force" "Per cent of the labour force" "Per cent of the labour force" "Per cent of the labour force" ...
-    ##  $ TID   : POSIXct, format: "1979-01-01" "1980-01-01" ...
-    ##  $ value : num  6.1 6.9 8.9 9.5 10 9.6 8.6 7.5 7.5 8.3 ...
+If you want the complete timeseries you can write "\*" in the TID variable in your query.

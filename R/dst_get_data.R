@@ -7,10 +7,12 @@
 #' @param ... Build your own query.
 #' @param query A request for data structured like the basic_basic_query.
 #' @param lang language. "en" for english and "da" for danish.
+#' @param meta Meta data for the table. If NULL the meta data will be requested.
 #' @param format for now just csv but later JSON and more.
-#' @param value_presentation for know just ValueAndCode
+#' @param value_presentation for now, just ValueAndCode
 #' @export
-dst_get_data <- function(table, ..., query = NULL, parse_dst_tid = TRUE, lang = "en", format = "CSV", value_presentation = "ValueAndCode"){
+dst_get_data <- function(table, ..., query = NULL, parse_dst_tid = TRUE, lang = "en", meta_data = NULL, format = "CSV", value_presentation = "ValueAndCode"){
+  
   dst_url <- paste0("http://api.statbank.dk/v1/data/", table, "/", format, "?")
   
   dst_url <- httr::parse_url(url = dst_url)
@@ -21,9 +23,12 @@ dst_get_data <- function(table, ..., query = NULL, parse_dst_tid = TRUE, lang = 
     if(length(query) == 0) stop("You need to build a query in ... or supply one to 'query'")
   }
   
+  # Force the names to be uppercase to match requirements from API
   names(query) <- toupper(names(query))
-
   dst_names <- names(query)
+  
+  # Match the text values with ids that needs to be supplied in the api request.
+  query <- dst_query_match(table = table, lang = lang, meta_data = meta_data, query = query)
 
   query$valuePresentation <- value_presentation
   query$lang <- lang

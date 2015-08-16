@@ -27,18 +27,5 @@ dst_meta_parse <- function(meta, lang){
     }
   }
   
-  ## Create basic_query for the data_post file
-  basic_query <- vector(mode="list", length=length(variables$id))
-  names(basic_query) <- variables$id
-  for(variable in 1:length(variables$id)){
-    
-    var_name <- variables$id[variable]
-    
-    if(var_name == "Tid"){
-      basic_query[[var_name]] <- as.character(values[[var_name]]$id[length(values[[var_name]]$id)])
-    } else {
-      basic_query[[var_name]] <- as.character(values[[var_name]]$id[1])
-    }
-  }
-  return(list("basics" = basics, "variables" = variables, "values" = values, "basic_query" = basic_query))
+  return(list("basics" = basics, "variables" = variables, "values" = values))
 }
