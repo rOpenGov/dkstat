@@ -75,7 +75,7 @@ aulaar_meta$variables
 
 ### Values
 
-The values is a list object of all the variable id's you can use to construct your final query:
+The values is a list object of all the values in each variable. You use the text column to construct your final query:
 
 ``` r
 str(aulaar_meta$values)
@@ -95,7 +95,7 @@ str(aulaar_meta$values)
 Get data
 --------
 
-If you know the table ids from the table you can simply supply the request through ...
+You need to build your query based on the text column that each variable contains in the meta\_data$values list.
 
 ``` r
 aulaar <- dst_get_data(table = "AULAAR", KØN = "Total", PERPCT = "Per cent of the labour force", Tid = 2013,
