@@ -12,7 +12,7 @@ dst_date_parse <- function(dst_date){
     dst_date <- lubridate::ymd(paste0(stringr::str_sub(dst_date, start = 1L, end = 4L), "-",
                                       stringr::str_sub(dst_date, start = -5L, end = -4L), "-",
                                       stringr::str_sub(dst_date, start = -2L)))
-  } else if(all(stringr::str_detect(dst_date, "^[0-9]{4}+[M]{1}+(([0]{1}+[0-9]{1})|([1]{1}+[1-2]{1}))")) &
+  } else if(all(stringr::str_detect(dst_date, "^[0-9]{4}+[M]{1}+(([0]{1}+[0-9]{1})|([1]{1}+[0-2]{1}))")) &
             all(stringr::str_length(string = dst_date) == 7)){
     
     # Monthly
