@@ -42,7 +42,14 @@ dst_get_data <- function(table, ..., query = NULL, parse_dst_tid = TRUE, lang = 
   dst_url <- dst_correct_url(dst_url)
   
   dst_data <- httr::content(x = httr::GET(dst_url), as = "text", encoding = "UTF-8")
-  dst_data <- read.csv2(text = dst_data, stringsAsFactors = FALSE, dec = ".")
+  
+  if(lang == "da"){
+    dst_data <- read.csv2(text = dst_data, stringsAsFactors = FALSE)
+  } else if(lang == "en"){
+    dst_data <- read.csv(text = dst_data, stringsAsFactors = FALSE, sep = ";")
+  } else {
+    stop("You haven't selected an appropiate language ('da' or 'en'")
+  }
   names(dst_data) <- c(dst_names, "value")
   
   # Parse the dates if param is TRUE
