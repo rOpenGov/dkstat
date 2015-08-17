@@ -99,8 +99,7 @@ You need to build your query based on the text column that each variable contain
 
 ``` r
 aulaar <- dst_get_data(table = "AULAAR", KØN = "Total", PERPCT = "Per cent of the labour force", Tid = 2013,
-                       lang = "en", 
-                       value_presentation = "ValueAndCode")
+                       lang = "en")
 str(aulaar)
 ```
 
@@ -146,5 +145,14 @@ str(dst_get_data(table = "folk1", query = my_query, lang = "da"))
     ##  $ STATSB: chr  "Danmark" "Danmark" "Danmark" "Danmark" ...
     ##  $ TID   : POSIXct, format: "2008-01-01" "2008-04-01" ...
     ##  $ value : int  5177301 5180007 5185500 5190271 5191263 5192575 5198180 5202378 5204798 5205473 ...
+
+``` r
+str(dst_get_data(table = "AUP01", OMRÅDE = c("Hele landet"), TID = "*", lang = "da"))
+```
+
+    ## 'data.frame':    102 obs. of  3 variables:
+    ##  $ OMRÅDE: chr  "Hele landet" "Hele landet" "Hele landet" "Hele landet" ...
+    ##  $ TID   : POSIXct, format: "2007-01-01" "2007-02-01" ...
+    ##  $ value : num  4.6 4.5 4.3 4 3.7 3.5 3.2 3 3.1 3 ...
 
 If you want the complete timeseries you can write "\*" in the TID variable in your query.

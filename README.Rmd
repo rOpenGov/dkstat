@@ -80,8 +80,7 @@ You need to build your query based on the text column that each variable contain
 
 ```{r}
 aulaar <- dst_get_data(table = "AULAAR", KØN = "Total", PERPCT = "Per cent of the labour force", Tid = 2013,
-                       lang = "en", 
-                       value_presentation = "ValueAndCode")
+                       lang = "en")
 str(aulaar)
 ```
 
@@ -115,6 +114,9 @@ my_query <- list(OMRÅDE = c("Hele landet", "København", "Frederiksberg", "Oden
                  TID = "*")
 
 str(dst_get_data(table = "folk1", query = my_query, lang = "da"))
+
+
+str(dst_get_data(table = "AUP01", OMRÅDE = c("Hele landet"), TID = "*", lang = "da"))
 
 ```
 
