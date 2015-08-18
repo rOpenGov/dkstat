@@ -19,6 +19,9 @@ dst_query_match <- function(table, lang, meta_data, query){
   # Stop the function if the query variable names dosn't match the meta data names.
   stopifnot(all(names(query) %in% toupper(names(meta_data$values))))
   
+  # Test if the query is to long
+  if(dst_value_limit(query, dst_meta) > 100000) stop("Your call exceeds the API limit of 100.000 values.")
+  
   # Loop over query and match the text with the ids and then return the IDs.
   for(i in seq_along(query)){
     if(query[[i]][1] != "*"){
