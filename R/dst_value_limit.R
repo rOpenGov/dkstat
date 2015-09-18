@@ -5,7 +5,6 @@
 #' 
 #' @param query
 #' @param dst_meta
-#' @export
 dst_value_limit <- function(query, dst_meta){
   
   # is the element in the list a "*"?

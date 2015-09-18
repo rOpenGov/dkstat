@@ -10,7 +10,7 @@ test_that("dst_date_parse gives the correct class.", {
   
   # Monthly
   expect_equal(class(dst_date_parse(dst_date = "2000M01")), exp_dates)
-  expect_equal(class(dst_date_parse(dst_date = c("2000M01", "2000M02", "2000M03", "2000M04"))), exp_dates)
+  expect_equal(class(dst_date_parse(dst_date = c("2000M01", "2000M02", "2000M03", "2000M04", "2000M10", "2000M11"))), exp_dates)
   
   # Quarterly
   expect_equal(class(dst_date_parse(dst_date = "2000Q1")), exp_dates)
