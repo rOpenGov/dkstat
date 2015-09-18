@@ -1,3 +1,6 @@
+# Changes to v0.05
+  * I fixed and error in dst_query_match and added a few more tests.
+
 # Changes to v0.04
 
   * I removed the basic$query from the returned meta data
