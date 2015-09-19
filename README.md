@@ -16,7 +16,7 @@ Examples
 
 Here are a few simple examples that will go through the basics of requesting data from the StatBank and the structure of the output.
 
-First, we'll load the library:
+First, we'll load the package:
 
 ``` r
 library(dkstat)
@@ -62,16 +62,16 @@ There's a table id, a short description, a unit description and when the table w
 
 ### Variables
 
-The variables in the list has a short description of each variable as well as the id:
+The variables in the list has a short description of each variable as well as the id. You might want to make sure that you have supplied all the ID's where the elimination columns is equal to FALSE. The IDs where eliminnation is equal FALSE are mandatory.
 
 ``` r
 aulaar_meta$variables
 ```
 
-    ##       id         text
-    ## 1    KØN          sex
-    ## 2 PERPCT persons/pct.
-    ## 3    Tid         time
+    ##       id         text elimination
+    ## 1    KØN          sex        TRUE
+    ## 2 PERPCT persons/pct.       FALSE
+    ## 3    Tid         time       FALSE
 
 ### Values
 
@@ -109,7 +109,7 @@ str(aulaar)
     ##  $ TID   : POSIXct, format: "2013-01-01"
     ##  $ value : num 4.4
 
-In the above request I don't supply the meta\_data to the dst\_get\_data function, but this is possible as I will show below.
+In the request above I don't supply the meta\_data to the dst\_get\_data function, but this is possible as I will show below. It's a good idea to supply the meta data to the dst\_get\_data function if you query the table more than once. If you don't supply the meta data the dst\_get\_data function will request the meta data for the table and this will be very ineffecient.
 
 Let's query the statbank using more than one value for each variable.
 
@@ -130,7 +130,9 @@ str(dst_get_data(table = "folk1",
     ##  $ TID   : POSIXct, format: "2008-01-01" "2008-04-01" ...
     ##  $ value : int  5177301 5180007 5185500 5190271 5191263 5192575 5198180 5202378 5204798 5205473 ...
 
-I can also build a query beforehand and then use the query in the query parameter.
+I can also build a query beforehand and then use the query in the query parameter. This might be a good way to split your script up into smaller pieces and make it more structured.
+
+You might have noticed that I use the \* as a value in the TID variable. You can use the star as a alternative to writing all the text values for the variable.
 
 ``` r
 my_query <- list(OMRÅDE = c("Hele landet", "København", "Frederiksberg", "Odense"),
@@ -154,5 +156,3 @@ str(dst_get_data(table = "AUP01", OMRÅDE = c("Hele landet"), TID = "*", lang = 
     ##  $ OMRÅDE: chr  "Hele landet" "Hele landet" "Hele landet" "Hele landet" ...
     ##  $ TID   : POSIXct, format: "2007-01-01" "2007-02-01" ...
     ##  $ value : num  4.6 4.5 4.3 4 3.7 3.5 3.2 3 3.1 3 ...
-
-If you want the complete timeseries you can write "\*" in the TID variable in your query.

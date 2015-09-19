@@ -1,3 +1,7 @@
+# Changes to v0.06
+  * It's now possible to see the mandatory variables the user needs to supply to the query.
+  * There's a test to make sure the mandatory fields are supplied to the query.
+
 # Changes to v0.05
   * I fixed and error in dst_query_match and added a few more tests.
 

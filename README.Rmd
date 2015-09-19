@@ -24,7 +24,7 @@ install_github("rOpenGov/dkstat")
 Here are a few simple examples that will go through the basics of requesting data from the StatBank
 and the structure of the output.  
 
-First, we'll load the library:
+First, we'll load the package:
 
 ```{r, message=FALSE}
 library(dkstat)
@@ -58,7 +58,9 @@ There's a table id, a short description, a unit description and when the table w
 
 ### Variables
 
-The variables in the list has a short description of each variable as well as the id:
+The variables in the list has a short description of each variable as well as the id. You might want to make sure that
+you have supplied all the ID's where the elimination columns is equal to FALSE. The IDs where eliminnation is equal
+FALSE are mandatory.
 
 ```{r}
 aulaar_meta$variables
@@ -85,8 +87,10 @@ str(aulaar)
 ```
 
 
-In the above request I don't supply the meta_data to the dst_get_data function, but this is possible
-as I will show below. 
+In the request above I don't supply the meta_data to the dst_get_data function, but this is possible
+as I will show below. It's a good idea to supply the meta data to the dst_get_data function if you
+query the table more than once. If you don't supply the meta data the dst_get_data function will
+request the meta data for the table and this will be very ineffecient.
 
 Let's query the statbank using more than one value for each variable.
 
@@ -104,8 +108,11 @@ str(dst_get_data(table = "folk1",
 ```
 
 
+I can also build a query beforehand and then use the query in the query parameter. This might
+be a good way to split your script up into smaller pieces and make it more structured.  
 
-I can also build a query beforehand and then use the query in the query parameter.
+You might have noticed that I use the * as a value in the TID variable. You can use the star as a alternative
+to writing all the text values for the variable.  
 
 ```{r}
 
@@ -120,5 +127,5 @@ str(dst_get_data(table = "AUP01", OMRÅDE = c("Hele landet"), TID = "*", lang = 
 
 ```
 
-If you want the complete timeseries you can write "*" in the TID variable in your query.
+
 
