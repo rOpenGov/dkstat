@@ -9,6 +9,12 @@ This package connects to the [StatBank](http://www.statistikbanken.dk/statbank5a
 
 This package is in early *BETA* and new changes will most likely not have backward compatibility.
 
+### A short message in Danish
+
+Denne R Statistics pakke indeholder funktioner til at give dig adgang til data gennem API'en fra Danmarks Statistik.
+Funktionerne henter data fra Statistikbanken og retunerer data.frame objekter med værdierne du spørger efter i
+dit funktionskald.
+
 ## Installation
 
 You can only install the development version from github, using Hadley Wickham's [devtools](http://cran.r-project.org/web/packages/devtools/index.html) package:
