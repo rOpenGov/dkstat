@@ -31,6 +31,16 @@ dst_date_parse <- function(dst_date){
     
     # Yearly
     dst_date <- lubridate::ymd(paste0(stringr::str_sub(dst_date, start = 1L, end = 4L), "-01-01"))
+  } else if(all(stringr::str_detect(dst_date, "^[0-9]{4}+[H]{1}+[1-2]{1}")) &
+            all(stringr::str_length(dst_date) == 6)){
+    
+    # Half yearly
+    dst_date[stringr::str_sub(dst_date, start = -1L) == 1] <- paste0(stringr::str_sub(dst_date[stringr::str_sub(dst_date, start = -1L) == 1], start = 1L, end = 4L),
+                                                                     "-01-01")
+    dst_date[stringr::str_sub(dst_date, start = -1L) == 2] <- paste0(stringr::str_sub(dst_date[stringr::str_sub(dst_date, start = -1L) == 2], start = 1L, end = 4L),
+                                                                     "-07-01")
+    dst_date <- lubridate::ymd(dst_date)
+    
   } else {
     stop("None of the regular expressions were matched. Please inspect the dates.")
   }

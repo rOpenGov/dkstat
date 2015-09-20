@@ -23,6 +23,9 @@ test_that("dst_date_parse gives the correct class.", {
   expect_equal(class(dst_date_parse(dst_date = "2000")), exp_dates)
   expect_equal(class(dst_date_parse(dst_date = c("2000", "2000", "2000", "2000"))), exp_dates)
   
+  expect_equal(class(dst_date_parse(dst_date = c("2015H1", "2015H2"))), exp_dates)
+  expect_equal(as.character(dst_date_parse(dst_date = c("2015H1", "2015H2"))), c("2015-01-01", "2015-07-01"))
+  
 })
 
 
