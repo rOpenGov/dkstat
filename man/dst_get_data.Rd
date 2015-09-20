@@ -5,21 +5,21 @@
 \title{This function returns the requested data from the StatBank table.
 (http://www.statistikbanken.dk/statbank5a/ or http://www.dst.dk)}
 \usage{
-dst_get_data(table, ..., query = NULL, parse_dst_tid = TRUE, lang = "en",
-  meta_data = NULL, format = "CSV", value_presentation = "ValueAndCode")
+dst_get_data(table, ..., query, parse_dst_tid = TRUE, lang = "en",
+  meta_data = NULL, format = "CSV", value_presentation = "Value")
 }
 \arguments{
 \item{table}{Table from StatBank.}
 
 \item{...}{Build your own query.}
 
-\item{query}{A request for data structured like the basic_basic_query.}
+\item{query}{A list object with your query.}
 
 \item{lang}{language. "en" for english and "da" for danish.}
 
 \item{format}{for now just csv but later JSON and more.}
 
-\item{value_presentation}{for now, just ValueAndCode}
+\item{value_presentation}{for now, "value" or "default"}
 
 \item{meta}{Meta data for the table. If NULL the meta data will be requested.}
 }
