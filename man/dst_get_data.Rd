@@ -22,7 +22,7 @@ day of the period and the time zone is "UTC" and not the Danish "CET".}
 
 \item{meta_data}{Meta data for the table. If NULL the meta data will be requested.}
 
-\item{format}{For now just csv but later JSON and more.}
+\item{format}{"CSV".}
 
 \item{value_presentation}{For now, "value" or "default"}
 }

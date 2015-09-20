@@ -10,7 +10,7 @@
 #'   day of the period and the time zone is "UTC" and not the Danish "CET".
 #' @param lang language. "en" for english and "da" for danish.
 #' @param meta_data Meta data for the table. If NULL the meta data will be requested.
-#' @param format For now just csv but later JSON and more.
+#' @param format "CSV".
 #' @param value_presentation For now, "value" or "default"
 #' @export
 dst_get_data <- function(table, ..., query = NULL, parse_dst_tid = TRUE, lang = "en", 
