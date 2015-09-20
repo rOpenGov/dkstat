@@ -2,7 +2,7 @@
 % Please edit documentation in R/dst_get_tables.R
 \name{dst_get_tables}
 \alias{dst_get_tables}
-\title{This functions downloads and list the available tables.}
+\title{This functions downloads all the available tables.}
 \usage{
 dst_get_tables(lang = "da")
 }
@@ -10,6 +10,6 @@ dst_get_tables(lang = "da")
 \item{lang}{"da" (danish) or "en" (english)}
 }
 \description{
-This functions downloads and list the available tables.
+This functions downloads all the available tables.
 }
 

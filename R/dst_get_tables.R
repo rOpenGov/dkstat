@@ -1,6 +1,6 @@
 
 
-#' This functions downloads and list the available tables.
+#' This functions downloads all the available tables.
 #' 
 #' @param lang "da" (danish) or "en" (english)
 #' @export
