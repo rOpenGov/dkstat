@@ -1,3 +1,7 @@
+# Changes to v0.07
+  * You can now download a data.frame with all the available tables.
+  * Half yearly data can now be parsed.
+
 # Changes to v0.06
   * It's now possible to see the mandatory variables the user needs to supply to the query.
   * There's a test to make sure the mandatory fields are supplied to the query.
