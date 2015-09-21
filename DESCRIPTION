@@ -1,17 +1,21 @@
 Package: dkstat
 Type: Package
 Title: API connection to the StatBank from Statistics Denmark.
-Version: 0.02
-Date: 2014-07-22
+Version: 0.08
+Date: 2015-09-20
 Authors@R: c(person("Kenneth", "Rose", role = c("aut", "cre"),
                     email = "kennethrose82@gmail.com"),
              person("Thomas J.", "leeper", role = "ctb"))
 Maintainer: Kenneth Rose <kennethrose82@gmail.com>
 Description: This package provides a few simple functions that can be used to
     query the StatBank from Statistics Denmark.
-Imports:
+Imports: 
     httr,
     jsonlite,
-    stringr
+    stringr,
+    lubridate
 License: GPL-2
 Roxygen: list(wrap = FALSE)
+Suggests: 
+  testthat,
+  mapDK

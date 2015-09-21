@@ -9,6 +9,12 @@ This package connects to the [StatBank](http://www.statistikbanken.dk/statbank5a
 
 This package is in early *BETA* and new changes will most likely not have backward compatibility.
 
+### A short message in Danish
+
+Denne R Statistics pakke indeholder funktioner til at give dig adgang til data gennem API'en fra Danmarks Statistik.
+Funktionerne henter data fra Statistikbanken og retunerer data.frame objekter med værdierne du spørger efter i
+dit funktionskald.
+
 ## Installation
 
 You can only install the development version from github, using Hadley Wickham's [devtools](http://cran.r-project.org/web/packages/devtools/index.html) package:
@@ -16,7 +22,7 @@ You can only install the development version from github, using Hadley Wickham's
 ```
 if(!require("devtools")) install.packages("devtools")
 library("devtools")
-install_github("krose/dkstat")
+install_github("rOpenGov/dkstat")
 ```
 
 ## Examples
@@ -24,7 +30,7 @@ install_github("krose/dkstat")
 Here are a few simple examples that will go through the basics of requesting data from the StatBank
 and the structure of the output.  
 
-First, we'll load the library:
+First, we'll load the package:
 
 ```{r, message=FALSE}
 library(dkstat)
@@ -58,7 +64,9 @@ There's a table id, a short description, a unit description and when the table w
 
 ### Variables
 
-The variables in the list has a short description of each variable as well as the id:
+The variables in the list has a short description of each variable as well as the id. You might want to make sure that
+you have supplied all the ID's where the elimination columns is equal to FALSE. The IDs where eliminnation is equal
+FALSE are mandatory.
 
 ```{r}
 aulaar_meta$variables
@@ -66,71 +74,64 @@ aulaar_meta$variables
 
 ### Values
 
-The values is a list object of all the variable id's you can use to construct your final query:
+The values is a list object of all the values in each variable. You use the text column to construct your final query:
 
 ```{r}
 str(aulaar_meta$values)
 ```
 
-### Basic Query
-
-The basic query is simply a list of the available variables with the first value id for each.
-
-```{r}
-aulaar_meta$basic_query
-```
 
 ## Get data
 
-If you know the table ids from the table you can simply supply the request
-through ...
+You need to build your query based on the text column that each variable contains in the meta_data$values list.
+
 
 ```{r}
-aulaar <- dst_get_data(table = "AULAAR", KØN = "TOT", PERPCT = "L10", Tid = 2013,
-                       lang = "en", 
-                       value_presentation = "ValueAndCode")
+aulaar <- dst_get_data(table = "AULAAR", KØN = "Total", PERPCT = "Per cent of the labour force", Tid = 2013,
+                       lang = "en")
 str(aulaar)
 ```
 
 
-Let's use the basic_query from the dst_meta list to make our first query:
+In the request above I don't supply the meta_data to the dst_get_data function, but this is possible
+as I will show below. It's a good idea to supply the meta data to the dst_get_data function if you
+query the table more than once. If you don't supply the meta data the dst_get_data function will
+request the meta data for the table and this will be very ineffecient.
+
+Let's query the statbank using more than one value for each variable.
 
 ```{r}
-aulaar <- dst_get_data(table = "AULAAR", 
-                       query = aulaar_meta$basic_query,
-                       lang = "en", 
-                       value_presentation = "ValueAndCode")
-str(aulaar)
+
+folk1_meta <- dst_meta("folk1", lang = "da")
+
+str(dst_get_data(table = "folk1", 
+             OMRÅDE = c("Hele landet", "København", "Frederiksberg", "Odense"), 
+             STATSB = "Danmark", 
+             TID = "*", 
+             lang = "da", 
+             meta_data = folk1_meta))
+
 ```
 
-This is maybe not really what you want, so let's use the basic_query to construct a new query that
-might be better. I still want to have the total and percentage unemployed, but I would like all the
-observations going back to 1979. I'll now construct the final request, query the StatBank and make a plot.
+
+I can also build a query beforehand and then use the query in the query parameter. This might
+be a good way to split your script up into smaller pieces and make it more structured.  
+
+You might have noticed that I use the * as a value in the TID variable. You can use the star as a alternative
+to writing all the text values for the variable.  
 
 ```{r}
-aulaar_meta$basic_query$Tid <- aulaar_meta$values$Tid$id
 
-aulaar <- dst_get_data(table = "AULAAR", 
-                       query = aulaar_meta$basic_query, 
-                       lang = "en", 
-                       format = "CSV",
-                       value_presentation = "ValueAndCode")
+my_query <- list(OMRÅDE = c("Hele landet", "København", "Frederiksberg", "Odense"),
+                 STATSB = "Danmark",
+                 TID = "*")
 
-plot(x = aulaar$TID, 
-     y = aulaar$value, 
-     main = "Unemployment", 
-     xlab = "Year", 
-     ylab = "Pct", 
-     type = "l")
+str(dst_get_data(table = "folk1", query = my_query, lang = "da"))
+
+
+str(dst_get_data(table = "AUP01", OMRÅDE = c("Hele landet"), TID = "*", lang = "da"))
+
 ```
 
-If you want the complete timeseries you can write "*" in the TID variable in the basic_query
-or like this:
 
-```{r}
-aulaar <- dst_get_data(table = "AULAAR", KØN = "TOT", PERPCT = "L10", Tid = "*",
-                       lang = "en", 
-                       value_presentation = "ValueAndCode")
-str(aulaar)
-```
 
