@@ -5,12 +5,15 @@
 \title{This function provides a search function for the description field of available
 data series}
 \usage{
-dst_search(string = "gpd", field = "text", use_cache = NULL)
+dst_search(string = "gpd", field = "text", lang = "da",
+  use_cache = NULL)
 }
 \arguments{
 \item{string}{Character string. Speficies the search term.}
 
 \item{field}{Character string.}
+
+\item{lang}{Character. "da" for danish or "en" for english.}
 
 \item{use_cache}{A logical scalar. Should the function call Statbank or use a (possibly outdated) saved version of their tables?}
 }
