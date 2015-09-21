@@ -5,7 +5,7 @@
 \title{This function returns meta data for a table from StatBank Denmark / Statistics Denmark.
 (http://www.statistikbanken.dk/statbank5a/ or http://www.dst.dk)}
 \usage{
-dst_meta(table, ..., lang = "en")
+dst_meta(table, ..., lang = "da")
 }
 \arguments{
 \item{table}{The name of the table you want meta data for.}

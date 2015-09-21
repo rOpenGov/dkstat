@@ -5,7 +5,7 @@
 \title{This function returns the requested data from the StatBank table.
 (http://www.statistikbanken.dk/statbank5a/ or http://www.dst.dk)}
 \usage{
-dst_get_data(table, ..., query = NULL, parse_dst_tid = TRUE, lang = "en",
+dst_get_data(table, ..., query = NULL, parse_dst_tid = TRUE, lang = "da",
   meta_data = NULL, format = "CSV", value_presentation = "Value")
 }
 \arguments{
@@ -18,7 +18,7 @@ dst_get_data(table, ..., query = NULL, parse_dst_tid = TRUE, lang = "en",
 \item{parse_dst_tid}{Logical. Default is TRUE. The date will be the first
 day of the period and the time zone is "UTC" and not the Danish "CET".}
 
-\item{lang}{language. "en" for english and "da" for danish.}
+\item{lang}{language. "en" for english or "da" for danish.}
 
 \item{meta_data}{Meta data for the table. If NULL the meta data will be requested.}
 

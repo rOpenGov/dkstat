@@ -8,12 +8,12 @@
 #' @param query A list object with your query.
 #' @param parse_dst_tid Logical. Default is TRUE. The date will be the first
 #'   day of the period and the time zone is "UTC" and not the Danish "CET".
-#' @param lang language. "en" for english and "da" for danish.
+#' @param lang language. "en" for english or "da" for danish.
 #' @param meta_data Meta data for the table. If NULL the meta data will be requested.
 #' @param format "CSV".
 #' @param value_presentation For now, "value" or "default"
 #' @export
-dst_get_data <- function(table, ..., query = NULL, parse_dst_tid = TRUE, lang = "en", 
+dst_get_data <- function(table, ..., query = NULL, parse_dst_tid = TRUE, lang = "da", 
                          meta_data = NULL, format = "CSV", value_presentation = "Value"){
   
   dst_url <- paste0("http://api.statbank.dk/v1/data/", table, "/", format, "?")

@@ -18,6 +18,17 @@ You can only install the development version from github, using Hadley Wickham's
 Examples
 --------
 
+The default language is danish, but have got a lang parameter that you can change from "da" to "en" if you wan't the data returned in English.
+
+### Four basic function
+
+There are four basic functions to learn:
+
+-   dst\_search() This function makes it possible to search through the different tables for a word or a phrase.
+-   dst\_tables() This function downloads all the possible tables available.
+-   dst\_meta() This function lets you download the meta data for a specific table, so you can see the description, unit, variables and values you can download data for.
+-   dst\_get\_data() lets you download the actual data you wan't.
+
 Here are a few simple examples that will go through the basics of requesting data from the StatBank and the structure of the output.
 
 First, we'll load the package:
@@ -25,6 +36,85 @@ First, we'll load the package:
 ``` r
 library(dkstat)
 ```
+
+The search function
+-------------------
+
+The search function let's you.. OK, you might know this already.
+
+Here I search for gdp in the text field of the tables.
+
+``` r
+dst_search(string = "bnp", field = "text")
+```
+
+    ##         id
+    ## 396 CFABNP
+    ## 901   NAN1
+    ## 905  NAHL2
+    ## 906  NAHO2
+    ## 907 NAHD21
+    ## 955   NKN1
+    ## 959  NKHO2
+    ## 973   NRHP
+    ##                                                                  text
+    ## 396                                        FoU udgifter i pct. af BNP
+    ## 901 Forsyningsbalance, Bruttonationalprodukt (BNP), beskæftigelse mv.
+    ## 905         1-2.1.1 Produktion, BNP og indkomstdannelse (hovedposter)
+    ## 906            1-2.1.1 Produktion, BNP og indkomstdannelse (oversigt)
+    ## 907                                  1 Produktion og BNP (detaljeret)
+    ## 955 Forsyningsbalance, Bruttonationalprodukt (BNP), beskæftigelse mv.
+    ## 959                       1-2.1.1 Produktion, BNP og indkomstdannelse
+    ## 973                       1-2.1.1 Produktion, BNP og indkomstdannelse
+    ##                                       unit             updated firstPeriod
+    ## 396 Procent af bruttonationalprodukt (BNP) 2015-01-30T09:00:00        1997
+    ## 901                                      - 2015-06-30T09:00:00        1966
+    ## 905                               Mio. kr. 2015-06-30T09:00:00        1966
+    ## 906                               Mio. kr. 2015-06-30T09:00:00        1995
+    ## 907                               Mio. kr. 2014-11-06T09:00:00        1995
+    ## 955                                      - 2015-08-31T09:00:00      1990K1
+    ## 959                               Mio. kr. 2015-08-31T09:00:00      1990K1
+    ## 973                                      - 2014-12-16T09:00:00        1993
+    ##     latestPeriod active                                     variables
+    ## 396         2013   TRUE                               pct af BNP, tid
+    ## 901         2014   TRUE                   transaktion, prisenhed, tid
+    ## 905         2014   TRUE                   transaktion, prisenhed, tid
+    ## 906         2014   TRUE                   transaktion, prisenhed, tid
+    ## 907         2013   TRUE                   transaktion, prisenhed, tid
+    ## 955       2015K2   TRUE transaktion, prisenhed, sæsonkorrigering, tid
+    ## 959       2015K2   TRUE transaktion, prisenhed, sæsonkorrigering, tid
+    ## 973         2013   TRUE           område, transaktion, prisenhed, tid
+
+Download the tables
+-------------------
+
+The dst\_get\_tables function downloads all the available tables that the search function use when searching for a word or a phrase.
+
+``` r
+head(dst_get_tables(lang = "da"))
+```
+
+    ##      id                                                   text  unit
+    ## 1 FOLK1                            Folketal den 1. i kvartalet Antal
+    ## 2 FOLK2                                     Folketal 1. januar Antal
+    ## 3 FOLK3                                     Folketal 1. januar Antal
+    ## 4    FT           Folketal (summariske tal fra folketællinger) Antal
+    ## 5 BEF5F Personer født på Færøerne og bosat i Danmark 1. januar Antal
+    ## 6 BEF5G  Personer født i Grønland og bosat i Danmark 1. januar Antal
+    ##               updated firstPeriod latestPeriod active
+    ## 1 2015-08-11T09:00:00      2008K1       2015K3   TRUE
+    ## 2 2015-02-10T09:00:00        1980         2015   TRUE
+    ## 3 2015-02-10T09:00:00        2008         2015   TRUE
+    ## 4 2015-02-10T09:00:00        1769         2015   TRUE
+    ## 5 2015-02-10T09:00:00        2008         2015   TRUE
+    ## 6 2015-02-10T09:00:00        2008         2015   TRUE
+    ##                                                                  variables
+    ## 1 område,køn,alder,civilstand,herkomst,oprindelsesland,statsborgerskab,tid
+    ## 2                   alder,køn,herkomst,statsborgerskab,oprindelsesland,tid
+    ## 3                                    fødselsdag,fødselsmåned,fødselsår,tid
+    ## 4                                                       hovedlandsdele,tid
+    ## 5                                       køn,alder,forældrenes fødested,tid
+    ## 6                                       køn,alder,forældrenes fødested,tid
 
 Meta data
 ---------
@@ -34,7 +124,7 @@ The dst\_meta function retrieves meta data from the table you wan't to take a cl
 We'll get some meta data from the [AULAAR table](http://www.statistikbanken.dk/AULAAR). The AULAAR table has net unemployment numbers.
 
 ``` r
-aulaar_meta <- dst_meta(table = "AULAAR", lang = "en")
+aulaar_meta <- dst_meta(table = "AULAAR", lang = "da")
 ```
 
 The 'dst\_meta' function returns a list with 4 objects: - basics - variables - values - basic\_query
@@ -51,13 +141,13 @@ aulaar_meta$basics
     ## [1] "AULAAR"
     ## 
     ## $text
-    ## [1] "Net unemployed"
+    ## [1] "Fuldtidsledige (netto)"
     ## 
     ## $description
-    ## [1] "Net unemployed by sex, persons/pct. and time"
+    ## [1] "Fuldtidsledige (netto) efter køn, personer/pct. og tid"
     ## 
     ## $unit
-    ## [1] "Number"
+    ## [1] "Antal"
     ## 
     ## $updated
     ## [1] "2015-06-19T09:00:00"
@@ -72,10 +162,10 @@ The variables in the list has a short description of each variable as well as th
 aulaar_meta$variables
 ```
 
-    ##       id         text elimination
-    ## 1    KØN          sex        TRUE
-    ## 2 PERPCT persons/pct.       FALSE
-    ## 3    Tid         time       FALSE
+    ##       id          text elimination
+    ## 1    KØN           køn        TRUE
+    ## 2 PERPCT personer/pct.       FALSE
+    ## 3    Tid           tid       FALSE
 
 ### Values
 
@@ -88,10 +178,10 @@ str(aulaar_meta$values)
     ## List of 3
     ##  $ KØN   :'data.frame':  3 obs. of  2 variables:
     ##   ..$ id  : chr [1:3] "TOT" "M" "K"
-    ##   ..$ text: chr [1:3] "Total" "Men" "Women"
+    ##   ..$ text: chr [1:3] "I alt" "Mænd" "Kvinder"
     ##  $ PERPCT:'data.frame':  2 obs. of  2 variables:
     ##   ..$ id  : chr [1:2] "L10" "L9"
-    ##   ..$ text: chr [1:2] "Per cent of the labour force" "Unemployed (thousands)"
+    ##   ..$ text: chr [1:2] "Procent af arbejdsstyrken" "Ledige (1000 personer)"
     ##  $ Tid   :'data.frame':  36 obs. of  2 variables:
     ##   ..$ id  : chr [1:36] "1979" "1980" "1981" "1982" ...
     ##   ..$ text: chr [1:36] "1979" "1980" "1981" "1982" ...
@@ -160,3 +250,7 @@ str(dst_get_data(table = "AUP01", OMRÅDE = c("Hele landet"), TID = "*", lang = 
     ##  $ OMRÅDE: chr  "Hele landet" "Hele landet" "Hele landet" "Hele landet" ...
     ##  $ TID   : POSIXct, format: "2007-01-01" "2007-02-01" ...
     ##  $ value : num  4.6 4.5 4.3 4 3.7 3.5 3.2 3 3.1 3 ...
+
+If you run into problems, then try to set the parse\_dst\_tid parameter to FALSE as there are few datasets with non-standard date formats.
+
+Don't hesitate to submit an issue or question on github and I'll try to help as much as I can.

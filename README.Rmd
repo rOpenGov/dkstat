@@ -27,6 +27,19 @@ install_github("rOpenGov/dkstat")
 
 ## Examples
 
+The default language is danish, but have got a lang parameter that you can change
+from "da" to "en" if you wan't the data returned in English.
+
+### Four basic function
+
+There are four basic functions to learn:
+
+- dst_search() This function makes it possible to search through the different tables for a word or a phrase.
+- dst_tables() This function downloads all the possible tables available.
+- dst_meta() This function lets you download the meta data for a specific table, so you can see the description,
+  unit, variables and values you can download data for.  
+- dst_get_data() lets you download the actual data you wan't.
+
 Here are a few simple examples that will go through the basics of requesting data from the StatBank
 and the structure of the output.  
 
@@ -36,6 +49,24 @@ First, we'll load the package:
 library(dkstat)
 ```
 
+## The search function
+
+The search function let's you.. OK, you might know this already.
+
+Here I search for gdp in the text field of the tables.  
+
+```{r, message=FALSE}
+dst_search(string = "bnp", field = "text")
+```
+
+## Download the tables
+
+The dst_get_tables function downloads all the available tables that the search function use
+when searching for a word or a phrase.  
+
+```{r, message=FALSE}
+head(dst_get_tables(lang = "da"))
+```
 ## Meta data
 
 The dst_meta function retrieves meta data from the table you wan't to take a closer look at. It can be used to create the final request, but if you can figure out the structure of the query you can define it yourself.
@@ -43,7 +74,7 @@ The dst_meta function retrieves meta data from the table you wan't to take a clo
 We'll get some meta data from the [AULAAR table](http://www.statistikbanken.dk/AULAAR). The AULAAR table has net unemployment numbers.
 
 ```{r}
-aulaar_meta <- dst_meta(table = "AULAAR", lang = "en")
+aulaar_meta <- dst_meta(table = "AULAAR", lang = "da")
 ```
 
 The 'dst_meta' function returns a list with 4 objects:
@@ -133,5 +164,8 @@ str(dst_get_data(table = "AUP01", OMRÅDE = c("Hele landet"), TID = "*", lang = 
 
 ```
 
+If you run into problems, then try to set the parse_dst_tid parameter to FALSE as there
+are few datasets with non-standard date formats.
 
+Don't hesitate to submit an issue or question on github and I'll try to help as much as I can.
 
