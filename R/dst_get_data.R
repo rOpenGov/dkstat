@@ -47,9 +47,9 @@ dst_get_data <- function(table, ..., query = NULL, parse_dst_tid = TRUE, lang = 
   dst_data <- httr::content(x = httr::GET(dst_url), as = "text", encoding = "UTF-8")
   
   if(lang == "da"){
-    dst_data <- read.csv2(text = dst_data, stringsAsFactors = FALSE)
+    dst_data <- read.csv2(text = dst_data, stringsAsFactors = FALSE, na.strings = c(".."))
   } else if(lang == "en"){
-    dst_data <- read.csv(text = dst_data, stringsAsFactors = FALSE, sep = ";")
+    dst_data <- read.csv(text = dst_data, stringsAsFactors = FALSE, sep = ";", na.strings = "..")
   } else {
     stop("You haven't selected an appropiate language ('da' or 'en'")
   }
