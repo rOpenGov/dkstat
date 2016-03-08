@@ -25,7 +25,7 @@ dst_query_match <- function(table, lang, meta_data, query){
   
   # Test if the query is to long
   # There is a limit to the number of values you can extract in one call to the API.
-  if(dst_value_limit(query, meta_data) > 100000) stop("Your call exceeds the API limit of 100.000 values.")
+  if(dst_value_limit(query, meta_data) > 1000) stop("Your call exceeds the API limit of 1.000 values.")
   
   # Loop over query and match the text with the ids and then return the IDs.
   # The id's are used to query the API so we need to replace the text with the ID.
