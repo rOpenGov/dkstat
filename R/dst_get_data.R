@@ -49,6 +49,12 @@ dst_get_data <- function(table, ..., query = NULL, parse_dst_tid = TRUE, lang = 
   dst_url <- httr::build_url(dst_url)
   dst_url <- dst_correct_url(dst_url)
   
+  dst_data <- httr::GET(dst_url)
+  
+  if(httr::status_code(dst_data) != 200){
+    stop(httr::content(dst_data, as = "text", encoding = "UTF-8")$message)
+  }
+  
   dst_data <- httr::content(x = httr::GET(dst_url), as = "text", encoding = "UTF-8")
   
   if(lang == "da"){
