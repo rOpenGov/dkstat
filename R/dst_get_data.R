@@ -10,7 +10,8 @@
 #'   day of the period and the time zone is "UTC" and not the Danish "CET".
 #' @param lang language. "en" for english or "da" for danish.
 #' @param meta_data Meta data for the table. If NULL the meta data will be requested.
-#' @param format "CSV".
+#' @param format character value. "CSV" or "BULK". If you choose BULK then you
+#'   need to select a value for each of the parameters.
 #' @param value_presentation For now, "value" or "default"
 #' @export
 dst_get_data <- function(table, ..., query = NULL, parse_dst_tid = TRUE, lang = "da", 
@@ -21,6 +22,11 @@ dst_get_data <- function(table, ..., query = NULL, parse_dst_tid = TRUE, lang = 
     stop("The lang parameter can only be 'da' or 'en'")
   }
   
+  # Test that the format is either CSV and BULK
+  if(!stringr::str_detect(format, "CSV|BULK")){
+    stop("The format parameter can only be CSV or BULK")
+  }
+
   dst_url <- paste0("http://api.statbank.dk/v1/data/", table, "/", format, "?")
   
   dst_url <- httr::parse_url(url = dst_url)
@@ -36,7 +42,7 @@ dst_get_data <- function(table, ..., query = NULL, parse_dst_tid = TRUE, lang = 
   dst_names <- names(query)
   
   # Match the text values with ids that needs to be supplied in the api request.
-  query <- dst_query_match(table = table, lang = lang, meta_data = meta_data, query = query)
+  query <- dst_query_match(table = table, lang = lang, meta_data = meta_data, query = query, format = format)
 
   query$valuePresentation <- value_presentation
   query$lang <- lang
@@ -49,13 +55,16 @@ dst_get_data <- function(table, ..., query = NULL, parse_dst_tid = TRUE, lang = 
   dst_url <- httr::build_url(dst_url)
   dst_url <- dst_correct_url(dst_url)
   
+  ## GET the data
   dst_data <- httr::GET(dst_url)
   
+  # Make sure the returned status is OK
   if(httr::status_code(dst_data) != 200){
     stop(httr::content(dst_data, as = "text", encoding = "UTF-8")$message)
   }
   
-  dst_data <- httr::content(x = httr::GET(dst_url), as = "text", encoding = "UTF-8")
+  # Get the content
+  dst_data <- httr::content(x = dst_data, as = "text", encoding = "UTF-8")
   
   if(lang == "da"){
     dst_data <- read.csv2(text = dst_data, stringsAsFactors = FALSE, na.strings = c(".."))

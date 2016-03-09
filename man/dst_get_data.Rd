@@ -22,7 +22,8 @@ day of the period and the time zone is "UTC" and not the Danish "CET".}
 
 \item{meta_data}{Meta data for the table. If NULL the meta data will be requested.}
 
-\item{format}{"CSV".}
+\item{format}{character value. "CSV" or "BULK". If you choose BULK then you
+need to select a value for each of the parameters.}
 
 \item{value_presentation}{For now, "value" or "default"}
 }

@@ -5,7 +5,8 @@
 #' @param lang language. "en" for english and "da" for danish.
 #' @param meta_data
 #' @param query
-dst_query_match <- function(table, lang, meta_data, query){
+#' @param format
+dst_query_match <- function(table, lang, meta_data, query, format){
   
   # if no meta data is supplied we download this to match the request.
   if(is.null(meta_data)){
@@ -24,8 +25,11 @@ dst_query_match <- function(table, lang, meta_data, query){
   }
   
   # Test if the query is to long
-  # There is a limit to the number of values you can extract in one call to the API.
-  if(dst_value_limit(query, meta_data) > 1000) stop("Your call exceeds the API limit of 1.000 values.")
+  # There is a limit to the number of values you can extract in one call to the API
+  # if the format is CSV
+  if((dst_value_limit(query, meta_data) > 1000) & format == "CSV"){
+    stop("Your call exceeds the API limit of 1.000 values.")
+  }
   
   # Loop over query and match the text with the ids and then return the IDs.
   # The id's are used to query the API so we need to replace the text with the ID.

@@ -15,6 +15,14 @@ test_that("dst_get_data returns an error when the limit is reached.", {
 
 test_that("dst_get_data is parsing the data correctly when 'en' and 'da' are selected as language. The API returns decimal numbers with both , and .", {
   
-  expect_equal(class(dst_get_data("AUP01", ALDER = "*", TID = "*", lang = "da")$value), "numeric")
+  expect_equal(class(dst_get_data("AUP01", ALDER = "*", TID = "*", lang = "da", format = "CSV")$value), "numeric")
   
 })
+
+test_that("dst_get_data fails with the BULK format when not all parameters have values.", {
+  
+  expect_error(dst_get_data("AUP01", ALDER = "*", TID = "*", lang = "da", format = "BULK"))
+  
+})
+
+

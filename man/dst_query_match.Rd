@@ -4,7 +4,7 @@
 \alias{dst_query_match}
 \title{This is a helper function to return the ids based on the text values.}
 \usage{
-dst_query_match(table, lang, meta_data, query)
+dst_query_match(table, lang, meta_data, query, format)
 }
 \arguments{
 \item{table}{Table from StatBank.}
@@ -14,6 +14,8 @@ dst_query_match(table, lang, meta_data, query)
 \item{meta_data}{}
 
 \item{query}{}
+
+\item{format}{}
 }
 \description{
 This is a helper function to return the ids based on the text values.
