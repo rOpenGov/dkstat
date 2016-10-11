@@ -1,6 +1,7 @@
 
-#' This is a helper function to return the ids based on the text values.
+#' Helper function to return ids based on text values
 #' 
+#' This is a helper function to return the ids based on the text values.
 #' @param table Table from StatBank.
 #' @param lang language. "en" for english and "da" for danish.
 #' @param meta_data

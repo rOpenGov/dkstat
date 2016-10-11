@@ -2,7 +2,7 @@
 % Please edit documentation in R/dst_query_match.R
 \name{dst_query_match}
 \alias{dst_query_match}
-\title{This is a helper function to return the ids based on the text values.}
+\title{Helper function to return ids based on text values}
 \usage{
 dst_query_match(table, lang, meta_data, query, format)
 }
