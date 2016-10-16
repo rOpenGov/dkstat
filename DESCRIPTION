@@ -9,13 +9,14 @@ Authors@R: c(person("Kenneth", "Rose", role = c("aut", "cre"),
 Maintainer: Kenneth Rose <kennethrose82@gmail.com>
 Description: This package provides a few simple functions that can be used to
     query the StatBank from Statistics Denmark.
-Imports: 
+Imports:
     httr,
     jsonlite,
     stringr,
     lubridate
 License: GPL-2
 Roxygen: list(wrap = FALSE)
-Suggests: 
-  testthat,
-  mapDK
+Suggests:
+    testthat,
+    mapDK
+RoxygenNote: 5.0.1
