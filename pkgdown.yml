@@ -1,0 +1,9 @@
+pandoc: 2.7.3
+pkgdown: 1.9000.9000.9000
+pkgdown_sha: 8a0332494bfd1edd015dbea701de4d2bc8c5d7b7
+articles: {}
+last_built: 2021-10-02T04:56Z
+urls:
+  reference: https://ropengov.github.io/dkstat/reference
+  article: https://ropengov.github.io/dkstat/articles
+
