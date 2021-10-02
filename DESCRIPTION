@@ -19,4 +19,6 @@ Roxygen: list(wrap = FALSE)
 Suggests:
     testthat,
     mapDK
+Remotes:
+    sebastianbarfort/mapDK
 RoxygenNote: 5.0.1
