@@ -1,4 +1,4 @@
-# dkstat a href='https://ropengov.github.io/dkstat/'><img src='man/figures/logo.png' align="right" height="139" /></a>
+# dkstat <a href='https://ropengov.github.io/dkstat/'><img src='man/figures/logo.png' align="right" height="139" /></a>
 
 <!-- badges: start -->
 [![rOG-badge](https://ropengov.github.io/rogtemplate/reference/figures/ropengov-badge.svg)](http://ropengov.org/)
