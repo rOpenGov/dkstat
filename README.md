@@ -1,3 +1,9 @@
+# dkstat a href='https://ropengov.github.io/dkstat/'><img src='man/figures/logo.png' align="right" height="139" /></a>
+
+<!-- badges: start -->
+[![rOG-badge](https://ropengov.github.io/rogtemplate/reference/figures/ropengov-badge.svg)](http://ropengov.org/)
+<!-- badges: end -->
+
 This package connects to the [StatBank](http://www.statistikbanken.dk/statbank5a/) API from [Statistics Denmark](http://www.dst.dk).
 
 This package is in early *BETA* and new changes will most likely not have backward compatibility.

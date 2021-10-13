@@ -1,24 +1,31 @@
-Package: dkstat
 Type: Package
+Package: dkstat
 Title: API connection to the StatBank from Statistics Denmark.
 Version: 0.08
 Date: 2015-09-20
-Authors@R: c(person("Kenneth", "Rose", role = c("aut", "cre"),
-                    email = "kennethrose82@gmail.com"),
-             person("Thomas J.", "leeper", role = "ctb"))
+Authors@R: c(
+    person("Kenneth", "Rose", , "kennethrose82@gmail.com", role = c("aut", "cre")),
+    person("Thomas J.", "leeper", role = "ctb")
+  )
 Maintainer: Kenneth Rose <kennethrose82@gmail.com>
-Description: This package provides a few simple functions that can be used to
-    query the StatBank from Statistics Denmark.
+Description: This package provides a few simple functions that can be used
+    to query the StatBank from Statistics Denmark.
+License: GPL-2
+URL: https://ropengov.github.io/dkstat/,
+    https://github.com/rOpenGov/dkstat
+BugReports: https://github.com/rOpenGov/dkstat/issues
 Imports:
     httr,
     jsonlite,
-    stringr,
-    lubridate
-License: GPL-2
-Roxygen: list(wrap = FALSE)
+    lubridate,
+    stringr
 Suggests:
-    testthat,
-    mapDK
+    mapDK,
+    testthat
 Remotes:
     sebastianbarfort/mapDK
+Encoding: UTF-8
+Roxygen: list(wrap = FALSE)
 RoxygenNote: 5.0.1
+X-schema.org-isPartOf: http://ropengov.org/
+X-schema.org-keywords: ropengov
