@@ -1,11 +1,12 @@
 Type: Package
 Package: dkstat
 Title: API connection to the StatBank from Statistics Denmark.
-Version: 0.08
-Date: 2015-09-20
+Version: 0.09
+Date: 2024-11-15
 Authors@R: c(
     person("Kenneth", "Rose", , "kennethrose82@gmail.com", role = c("aut", "cre")),
-    person("Thomas J.", "leeper", role = "ctb")
+    person("Thomas J.", "leeper", role = "ctb"),
+    person("Aleksander", "Bang-Larsen", "contact@aleksanderbl.dk", role = "ctb")
   )
 Maintainer: Kenneth Rose <kennethrose82@gmail.com>
 Description: This package provides a few simple functions that can be used
