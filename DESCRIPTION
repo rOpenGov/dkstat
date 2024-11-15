@@ -6,7 +6,8 @@ Date: 2024-11-15
 Authors@R: c(
     person("Kenneth", "Rose", , "kennethrose82@gmail.com", role = c("aut", "cre")),
     person("Thomas J.", "leeper", role = "ctb"),
-    person("Aleksander", "Bang-Larsen", "contact@aleksanderbl.dk", role = "ctb")
+    person("Aleksander", "Bang-Larsen", "contact@aleksanderbl.dk", role = "ctb",
+    comment = c(ORCID = "0009-0007-7984-4650"))
   )
 Maintainer: Kenneth Rose <kennethrose82@gmail.com>
 Description: This package provides a few simple functions that can be used
