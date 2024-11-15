@@ -5,6 +5,8 @@
 #'
 #' @export
 #' @inheritParams dst_get_data
+#' @family Data retrival functions
+#' @author Aleksander Bang-Larsen
 dst_get_all_data <- function(table, lang = "da") {
   
   # Get metadata for table  
