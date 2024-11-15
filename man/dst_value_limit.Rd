@@ -13,4 +13,3 @@ This is a helper function that returns the number
 of values the call will return.
 The API has a limit of 100.000 values.
 }
-

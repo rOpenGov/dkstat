@@ -5,8 +5,16 @@
 \title{This function returns the requested data from the StatBank table.
 (http://www.statistikbanken.dk/statbank5a/ or http://www.dst.dk)}
 \usage{
-dst_get_data(table, ..., query = NULL, parse_dst_tid = TRUE, lang = "da",
-  meta_data = NULL, format = "CSV", value_presentation = "Value")
+dst_get_data(
+  table,
+  ...,
+  query = NULL,
+  parse_dst_tid = TRUE,
+  lang = "da",
+  meta_data = NULL,
+  format = "CSV",
+  value_presentation = "Value"
+)
 }
 \arguments{
 \item{table}{Table from StatBank.}
@@ -30,4 +38,8 @@ need to select a value for each of the parameters.}
 \description{
 Get data from a table in the StatBank.
 }
-
+\seealso{
+Other Data retrival functions: 
+\code{\link{dst_get_all_data}()}
+}
+\concept{Data retrival functions}

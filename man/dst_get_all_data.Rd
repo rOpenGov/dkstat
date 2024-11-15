@@ -15,3 +15,11 @@ dst_get_all_data(table, lang = "da")
 \description{
 Get all data from a table in the StatBank.
 }
+\seealso{
+Other Data retrival functions: 
+\code{\link{dst_get_data}()}
+}
+\author{
+Aleksander Bang-Larsen
+}
+\concept{Data retrival functions}

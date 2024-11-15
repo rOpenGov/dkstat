@@ -27,6 +27,6 @@ Remotes:
     sebastianbarfort/mapDK
 Encoding: UTF-8
 Roxygen: list(wrap = FALSE)
-RoxygenNote: 5.0.1
+RoxygenNote: 7.3.2
 X-schema.org-isPartOf: http://ropengov.org/
 X-schema.org-keywords: ropengov
