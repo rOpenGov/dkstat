@@ -20,6 +20,6 @@ Other Data retrival functions:
 \code{\link{dst_get_data}()}
 }
 \author{
-Aleksander Bang-Larsen
+Aleksander Bang-Larsen <contact@aleksanderbl.dk>
 }
 \concept{Data retrival functions}

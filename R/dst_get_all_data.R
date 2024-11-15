@@ -21,7 +21,8 @@ dst_get_all_data <- function(table, lang = "da") {
   # Request table with query params
   data <- dst_get_data(
     table = table,
-    query = query
+    query = query,
+    lang = lang
   )
   
   return(data)
