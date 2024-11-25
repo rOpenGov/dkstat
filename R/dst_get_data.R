@@ -14,6 +14,7 @@
 #'   need to select a value for each of the parameters.
 #' @param value_presentation For now, "value" or "default"
 #' @export
+#' @family Data retrival functions
 dst_get_data <- function(table, ..., query = NULL, parse_dst_tid = TRUE, lang = "da", 
                          meta_data = NULL, format = "CSV", value_presentation = "Value"){
   

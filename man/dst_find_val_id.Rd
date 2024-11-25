@@ -18,4 +18,3 @@ dst_find_val_id(meta_data, variable, values_text = NULL)
 This is a helper function to extract the ID's in the values list
 that the dst_meta function returns.
 }
-

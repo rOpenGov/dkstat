@@ -18,4 +18,3 @@ Some tables are VERY large, so the basic request is rather simple. The
 function returns a list with basic data, info on available variables
 and a list with a basic request.
 }
-

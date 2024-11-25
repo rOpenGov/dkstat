@@ -12,4 +12,3 @@ dst_get_tables(lang = "da")
 \description{
 This functions downloads all the available tables.
 }
-

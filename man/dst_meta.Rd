@@ -18,4 +18,3 @@ dst_meta(table, ..., lang = "da")
 This function POSTs a request for meta data on a table from Statistics Denmark
 and returns a JSON object with the information.
 }
-

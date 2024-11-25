@@ -5,8 +5,7 @@
 \title{This function provides a search function for the description field of available 
 data series}
 \usage{
-dst_search(string = "gpd", field = "text", lang = "da",
-  use_cache = NULL)
+dst_search(string = "gpd", field = "text", lang = "da", use_cache = NULL)
 }
 \arguments{
 \item{string}{Character string. Speficies the search term.}
@@ -21,4 +20,3 @@ dst_search(string = "gpd", field = "text", lang = "da",
 This function provides a search function for the description field of available 
 data series
 }
-

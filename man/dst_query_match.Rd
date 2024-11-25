@@ -14,4 +14,3 @@ dst_query_match(table, lang, meta_data, query, format)
 \description{
 This is a helper function to return the ids based on the text values.
 }
-

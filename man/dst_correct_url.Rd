@@ -12,4 +12,3 @@ dst_correct_url(url)
 \description{
 Corrects url encoding for Danish letters.
 }
-

@@ -13,4 +13,3 @@ dst_date_parse(dst_date)
 \description{
 Helper function to parse the dates from the statbank.
 }
-
