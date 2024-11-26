@@ -4,12 +4,12 @@ Title: API connection to the StatBank from Statistics Denmark.
 Version: 0.09
 Date: 2024-11-15
 Authors@R: c(
-    person("Kenneth", "Rose", , "kennethrose82@gmail.com", role = c("aut", "cre")),
-    person("Thomas J.", "leeper", role = "ctb"),
-    person("Aleksander", "Bang-Larsen", "contact@aleksanderbl.dk", role = "ctb",
-    comment = c(ORCID = "0009-0007-7984-4650"))
+    person("Aleksander", "Bang-Larsen", , "contact@aleksanderbl.dk", role = c("aut", "cre"),
+    comment = c(ORCID = "0009-0007-7984-4650")),
+    person("Kenneth", "Rose", , "kennethrose82@gmail.com", role = c("aut")),
+    person("Thomas J.", "leeper", role = "ctb")
   )
-Maintainer: Kenneth Rose <kennethrose82@gmail.com>
+Maintainer: Aleksander Bang-Larsen <contact@aleksanderbl.dk>
 Description: This package provides a few simple functions that can be used
     to query the StatBank from Statistics Denmark.
 License: GPL-2
