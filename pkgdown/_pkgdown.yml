@@ -4,3 +4,8 @@ template:
   opengraph:
     twitter:
       site: '@rOpenGov'
+
+authors:
+  Aleksander Bang-Larsen:
+    href: https://aleksanderbl.dk
+
