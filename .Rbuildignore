@@ -8,3 +8,4 @@
 ^data-raw$
 ^docs$
 ^README.Rmd$
+^.lintr$
