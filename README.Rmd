@@ -1,14 +1,14 @@
 ---
 title: "Statistics Denmark StatBank API connection"
-output: 
-  md_document:
-    variant: markdown_github
+output: github_document
 ---
 
 # dkstat <a href='https://ropengov.github.io/dkstat/'><img src='man/figures/logo.png' align="right" height="139" /></a>
 
 <!-- badges: start -->
 [![rOG-badge](https://ropengov.github.io/rogtemplate/reference/figures/ropengov-badge.svg)](http://ropengov.org/)
+[![codecov](https://codecov.io/gh/rOpenGov/dkstat/graph/badge.svg)](https://codecov.io/gh/rOpenGov/dkstat)
+[![R-CMD-check](https://github.com/rOpenGov/dkstat/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rOpenGov/dkstat/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 This package connects to the [StatBank](http://www.statistikbanken.dk/statbank5a/) API from [Statistics Denmark](http://www.dst.dk).
@@ -139,15 +139,15 @@ Let's query the statbank using more than one value for each variable.
 
 ```{r}
 
-folk1_meta <- dst_meta("folk1", lang = "da")
+folk1a_meta <- dst_meta("folk1a", lang = "da")
 
-str(dst_get_data(table = "folk1", 
-             OMRÅDE = c("Hele landet", "København", "Frederiksberg", "Odense"), 
-             STATSB = "Danmark", 
-             TID = "*", 
-             lang = "da", 
-             meta_data = folk1_meta))
-
+str(dst_get_data(table = "folk1a",
+                 Tid = "*",
+                 CIVILSTAND = "*",
+                 ALDER = "*",
+                 OMRÅDE = c("Hele landet", "København", "Dragør", "Albertslund"),
+                 lang = "da", 
+                 meta_data = folk1a_meta))
 ```
 
 
@@ -160,10 +160,10 @@ to writing all the text values for the variable.
 ```{r}
 
 my_query <- list(OMRÅDE = c("Hele landet", "København", "Frederiksberg", "Odense"),
-                 STATSB = "Danmark",
+                 CIVILSTAND = "Ugift",
                  TID = "*")
 
-str(dst_get_data(table = "folk1", query = my_query, lang = "da"))
+str(dst_get_data(table = "folk1a", query = my_query, lang = "da"))
 
 
 str(dst_get_data(table = "AUP01", OMRÅDE = c("Hele landet"), TID = "*", lang = "da"))

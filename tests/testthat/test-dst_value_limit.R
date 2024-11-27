@@ -8,7 +8,7 @@ test_that("dst_value_limit returns the correct value.", {
   expect_equal(dst_value_limit(query = list(CIVILSTAND = "*",
                                             ALDER = "*",
                                             OMRÅDE = c(
-                                              "Hele Landet",
+                                              "Hele landet",
                                               "København",
                                               "Dragør",
                                               "Albertslund",
