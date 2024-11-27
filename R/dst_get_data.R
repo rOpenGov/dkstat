@@ -15,6 +15,7 @@
 #' @param value_presentation For now, "value" or "default"
 #' @export
 #' @family Data retrival functions
+#' @importFrom utils read.csv read.csv2
 dst_get_data <- function(table, ..., query = NULL, parse_dst_tid = TRUE, lang = "da",
                          meta_data = NULL, format = "CSV", value_presentation = "Value"){
 
