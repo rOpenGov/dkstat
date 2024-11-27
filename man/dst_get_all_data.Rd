@@ -17,17 +17,17 @@ day of the period and the time zone is "UTC" and not the Danish "CET".}
 }
 \description{
 Get all data from a table in the StatBank. This function
-  provides all the query parameters on the user's behalf. You, as a user, do
-  not need to specify anything other than a table name and you will be given
-  the entire contents of the table in a nice long format. This is useful for
-  you, if you would like to filter the table with e.g. `dplyr` functions or
-  save the entire table for archival.
+provides all the query parameters on the user's behalf. You, as a user, do
+not need to specify anything other than a table name and you will be given
+the entire contents of the table in a nice long format. This is useful for
+you, if you would like to filter the table with e.g. \code{{dplyr}} functions or
+save the entire table for archival.
 }
 \seealso{
 Other Data retrival functions: 
 \code{\link{dst_get_data}()}
 }
 \author{
-Aleksander Bang-Larsen <contact@aleksanderbl.dk>
+Aleksander Bang-Larsen \href{mailto:contact@aleksanderbl.dk}{contact@aleksanderbl.dk}
 }
 \concept{Data retrival functions}

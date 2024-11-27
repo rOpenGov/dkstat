@@ -5,7 +5,7 @@
 #'   provides all the query parameters on the user's behalf. You, as a user, do
 #'   not need to specify anything other than a table name and you will be given
 #'   the entire contents of the table in a nice long format. This is useful for
-#'   you, if you would like to filter the table with e.g. `dplyr` functions or
+#'   you, if you would like to filter the table with e.g. `{dplyr}` functions or
 #'   save the entire table for archival.
 #'
 #' @export
