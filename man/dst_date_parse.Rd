@@ -7,8 +7,11 @@
 dst_date_parse(dst_date)
 }
 \arguments{
-\item{A}{vector of length one or more with date formats like
+\item{dst_date}{A vector of length one or more with date formats like
 1982M12D09, 1982M12, 1982Q4 or 1982}
+}
+\value{
+Returns the input date formatted to be Europe/Copenhagen
 }
 \description{
 Helper function to parse the dates from the statbank.
