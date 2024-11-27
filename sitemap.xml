@@ -1,45 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://ropengov.github.io/dkstat/404.html</loc>
-  </url>
-  <url>
-    <loc>https://ropengov.github.io/dkstat/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://ropengov.github.io/dkstat/index.html</loc>
-  </url>
-  <url>
-    <loc>https://ropengov.github.io/dkstat/reference/dst_correct_url.html</loc>
-  </url>
-  <url>
-    <loc>https://ropengov.github.io/dkstat/reference/dst_date_parse.html</loc>
-  </url>
-  <url>
-    <loc>https://ropengov.github.io/dkstat/reference/dst_find_val_id.html</loc>
-  </url>
-  <url>
-    <loc>https://ropengov.github.io/dkstat/reference/dst_get_data.html</loc>
-  </url>
-  <url>
-    <loc>https://ropengov.github.io/dkstat/reference/dst_get_tables.html</loc>
-  </url>
-  <url>
-    <loc>https://ropengov.github.io/dkstat/reference/dst_meta.html</loc>
-  </url>
-  <url>
-    <loc>https://ropengov.github.io/dkstat/reference/dst_meta_parse.html</loc>
-  </url>
-  <url>
-    <loc>https://ropengov.github.io/dkstat/reference/dst_query_match.html</loc>
-  </url>
-  <url>
-    <loc>https://ropengov.github.io/dkstat/reference/dst_search.html</loc>
-  </url>
-  <url>
-    <loc>https://ropengov.github.io/dkstat/reference/dst_value_limit.html</loc>
-  </url>
-  <url>
-    <loc>https://ropengov.github.io/dkstat/reference/index.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://ropengov.github.io/dkstat/404.html</loc></url>
+<url><loc>https://ropengov.github.io/dkstat/authors.html</loc></url>
+<url><loc>https://ropengov.github.io/dkstat/index.html</loc></url>
+<url><loc>https://ropengov.github.io/dkstat/reference/dst_correct_url.html</loc></url>
+<url><loc>https://ropengov.github.io/dkstat/reference/dst_date_parse.html</loc></url>
+<url><loc>https://ropengov.github.io/dkstat/reference/dst_find_val_id.html</loc></url>
+<url><loc>https://ropengov.github.io/dkstat/reference/dst_get_all_data.html</loc></url>
+<url><loc>https://ropengov.github.io/dkstat/reference/dst_get_data.html</loc></url>
+<url><loc>https://ropengov.github.io/dkstat/reference/dst_get_tables.html</loc></url>
+<url><loc>https://ropengov.github.io/dkstat/reference/dst_meta.html</loc></url>
+<url><loc>https://ropengov.github.io/dkstat/reference/dst_meta_parse.html</loc></url>
+<url><loc>https://ropengov.github.io/dkstat/reference/dst_query_match.html</loc></url>
+<url><loc>https://ropengov.github.io/dkstat/reference/dst_search.html</loc></url>
+<url><loc>https://ropengov.github.io/dkstat/reference/dst_value_limit.html</loc></url>
+<url><loc>https://ropengov.github.io/dkstat/reference/index.html</loc></url>
+<url><loc>https://ropengov.github.io/dkstat/reference/tables_da.html</loc></url>
+<url><loc>https://ropengov.github.io/dkstat/reference/tables_en.html</loc></url>
 </urlset>
+
