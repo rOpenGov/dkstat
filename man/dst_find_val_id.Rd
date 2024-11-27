@@ -2,8 +2,8 @@
 % Please edit documentation in R/dst_find_val_id.R
 \name{dst_find_val_id}
 \alias{dst_find_val_id}
-\title{This is a helper function to extract the ID's in the values list
-that the dst_meta function returns.}
+\title{This is a helper function to extract the ID's in the values list that the
+dst_meta function returns.}
 \usage{
 dst_find_val_id(meta_data, variable, values_text = NULL)
 }
@@ -12,9 +12,10 @@ dst_find_val_id(meta_data, variable, values_text = NULL)
 
 \item{variable}{The variable to search in.}
 
-\item{values_text}{Character vector. The values you want to extract the IDs for. If NULL, the returned value will be "*".}
+\item{values_text}{Character vector. The values you want to extract the IDs
+for. If NULL, the returned value will be "*".}
 }
 \description{
-This is a helper function to extract the ID's in the values list
-that the dst_meta function returns.
+This is a helper function to extract the ID's in the values list that the
+dst_meta function returns.
 }

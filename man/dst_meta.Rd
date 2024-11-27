@@ -2,8 +2,9 @@
 % Please edit documentation in R/dst_meta.R
 \name{dst_meta}
 \alias{dst_meta}
-\title{This function returns meta data for a table from StatBank Denmark / Statistics Denmark.
-(http://www.statistikbanken.dk/statbank5a/ or http://www.dst.dk)}
+\title{This function returns meta data for a table from StatBank Denmark /
+Statistics Denmark. (http://www.statistikbanken.dk/statbank5a/ or
+http://www.dst.dk)}
 \usage{
 dst_meta(table, ..., lang = "da")
 }
@@ -15,6 +16,6 @@ dst_meta(table, ..., lang = "da")
 \item{lang}{You can choose "en" for english or "da" for danish.}
 }
 \description{
-This function POSTs a request for meta data on a table from Statistics Denmark
-and returns a JSON object with the information.
+This function POSTs a request for meta data on a table from Statistics
+Denmark and returns a JSON object with the information.
 }

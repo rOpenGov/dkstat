@@ -10,11 +10,12 @@ dst_meta_parse(meta, lang)
 \arguments{
 \item{meta}{The returned meta data from the function meta_dst.}
 
-\item{lang}{The language from the orignal dst_meta function (due to an error in the API)}
+\item{lang}{The language from the orignal dst_meta function (due to an error
+in the API)}
 }
 \description{
-This function structures the JSON data a bit an creates a basic_query.
-Some tables are VERY large, so the basic request is rather simple. The
-function returns a list with basic data, info on available variables
-and a list with a basic request.
+This function structures the JSON data a bit an creates a basic_query. Some
+tables are VERY large, so the basic request is rather simple. The function
+returns a list with basic data, info on available variables and a list with a
+basic request.
 }

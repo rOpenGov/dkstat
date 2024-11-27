@@ -2,8 +2,8 @@
 % Please edit documentation in R/dst_search.R
 \name{dst_search}
 \alias{dst_search}
-\title{This function provides a search function for the description field of available
-data series}
+\title{This function provides a search function for the description field of
+available data series}
 \usage{
 dst_search(string = "gpd", field = "text", lang = "da", use_cache = NULL)
 }
@@ -14,9 +14,10 @@ dst_search(string = "gpd", field = "text", lang = "da", use_cache = NULL)
 
 \item{lang}{Character. "da" for danish or "en" for english.}
 
-\item{use_cache}{A logical scalar. Should the function call Statbank or use a (possibly outdated) saved version of their tables?}
+\item{use_cache}{A logical scalar. Should the function call Statbank or use a
+(possibly outdated) saved version of their tables?}
 }
 \description{
-This function provides a search function for the description field of available
-data series
+This function provides a search function for the description field of
+available data series
 }

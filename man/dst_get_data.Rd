@@ -23,12 +23,13 @@ dst_get_data(
 
 \item{query}{A list object with your query.}
 
-\item{parse_dst_tid}{Logical. Default is TRUE. The date will be the first
-day of the period and the time zone is "UTC" and not the Danish "CET".}
+\item{parse_dst_tid}{Logical. Default is TRUE. The date will be the first day
+of the period and the time zone is "UTC" and not the Danish "CET".}
 
 \item{lang}{language. "en" for english or "da" for danish.}
 
-\item{meta_data}{Meta data for the table. If NULL the meta data will be requested.}
+\item{meta_data}{Meta data for the table. If NULL the meta data will be
+requested.}
 
 \item{format}{character value. "CSV" or "BULK". If you choose BULK then you
 need to select a value for each of the parameters.}
