@@ -22,7 +22,7 @@ dst_query_match <- function(table, lang, meta_data, query, format) {
   # names in the meta data
   if (!(all(names(query) %in% toupper(names(meta_data$values))))) {
     stop(paste0(
-      "All the variable names in your query couldn't be matched to the meta data.\n" #nolint
+      "All the variable names in your query couldn't be matched to the meta data.\n" # nolint
     ))
   }
 

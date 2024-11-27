@@ -9,7 +9,7 @@ dst_find_val_id <- function(meta_data, variable, values_text = NULL) {
   names(meta_data$values) <- toupper(names(meta_data$values))
 
   if (!is.null(values_text)) {
-    ids <- list(meta_data$values[[variable]]$id[meta_data$values[[variable]]$text %in% values_text]) #nolint
+    ids <- list(meta_data$values[[variable]]$id[meta_data$values[[variable]]$text %in% values_text]) # nolint
     names(ids) <- variable
 
     # Test that all the values_text can be matched. If not, stop.
@@ -26,7 +26,6 @@ dst_find_val_id <- function(meta_data, variable, values_text = NULL) {
       )
     }
     # nolint end
-
   } else {
     ids <- list("*")
     names(ids) <- variable
@@ -34,7 +33,7 @@ dst_find_val_id <- function(meta_data, variable, values_text = NULL) {
 
   if (length(ids) > 1) {
     warning(
-      "Results couldn't be transformed to a vector as results are in a list bigger than length 1." #nolint
+      "Results couldn't be transformed to a vector as results are in a list bigger than length 1." # nolint
     )
   } else {
     ids <- ids[[variable]]

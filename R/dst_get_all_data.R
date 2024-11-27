@@ -13,7 +13,6 @@
 #' @family Data retrival functions
 #' @author Aleksander Bang-Larsen <contact@@aleksanderbl.dk>
 dst_get_all_data <- function(table, lang = "da", parse_dst_tid = TRUE) {
-
   # Get metadata for table
   metadata <- dst_meta(table)
 

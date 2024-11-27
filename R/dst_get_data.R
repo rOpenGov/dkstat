@@ -42,8 +42,9 @@ dst_get_data <- function(table,
   ## If query is NULL, then use ... as query
   if (is.null(query)) {
     query <- list(...)
-    if (length(query) == 0)
+    if (length(query) == 0) {
       stop("You need to build a query in ... or supply one to 'query'")
+    }
   }
 
   # Force the names to be uppercase to match requirements from API
@@ -65,9 +66,11 @@ dst_get_data <- function(table,
   ## Insert request into url
   dst_url$query <- query
 
-  dst_url$query <- lapply(X = dst_url$query,
-                          FUN = paste,
-                          collapse = ",")
+  dst_url$query <- lapply(
+    X = dst_url$query,
+    FUN = paste,
+    collapse = ","
+  )
 
   dst_url <- httr::build_url(dst_url)
   dst_url <- dst_correct_url(dst_url)

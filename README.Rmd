@@ -124,8 +124,10 @@ You need to build your query based on the text column that each variable contain
 
 
 ```{r}
-aulaar <- dst_get_data(table = "AULAAR", KØN = "Total", PERPCT = "Per cent of the labour force", Tid = 2013,
-                       lang = "en")
+aulaar <- dst_get_data(
+  table = "AULAAR", KØN = "Total", PERPCT = "Per cent of the labour force", Tid = 2013,
+  lang = "en"
+)
 str(aulaar)
 ```
 
@@ -138,16 +140,17 @@ request the meta data for the table and this will be very ineffecient.
 Let's query the statbank using more than one value for each variable.
 
 ```{r}
-
 folk1a_meta <- dst_meta("folk1a", lang = "da")
 
-str(dst_get_data(table = "folk1a",
-                 Tid = "*",
-                 CIVILSTAND = "*",
-                 ALDER = "*",
-                 OMRÅDE = c("Hele landet", "København", "Dragør", "Albertslund"),
-                 lang = "da", 
-                 meta_data = folk1a_meta))
+str(dst_get_data(
+  table = "folk1a",
+  Tid = "*",
+  CIVILSTAND = "*",
+  ALDER = "*",
+  OMRÅDE = c("Hele landet", "København", "Dragør", "Albertslund"),
+  lang = "da",
+  meta_data = folk1a_meta
+))
 ```
 
 
@@ -158,16 +161,16 @@ You might have noticed that I use the * as a value in the TID variable. You can 
 to writing all the text values for the variable.  
 
 ```{r}
-
-my_query <- list(OMRÅDE = c("Hele landet", "København", "Frederiksberg", "Odense"),
-                 CIVILSTAND = "Ugift",
-                 TID = "*")
+my_query <- list(
+  OMRÅDE = c("Hele landet", "København", "Frederiksberg", "Odense"),
+  CIVILSTAND = "Ugift",
+  TID = "*"
+)
 
 str(dst_get_data(table = "folk1a", query = my_query, lang = "da"))
 
 
 str(dst_get_data(table = "AUP01", OMRÅDE = c("Hele landet"), TID = "*", lang = "da"))
-
 ```
 
 If you run into problems, then try to set the parse_dst_tid parameter to FALSE as there

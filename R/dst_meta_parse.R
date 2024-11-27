@@ -31,9 +31,11 @@ dst_meta_parse <- function(meta, lang) {
   if (lang == "en") {
     test <- grepl(pattern = "Tid", names(values))
     if (sum(test) > 0) {
-      values$Tid$id <- sub(pattern = "Q",
-                           replacement = "K",
-                           x = values$Tid$id)
+      values$Tid$id <- sub(
+        pattern = "Q",
+        replacement = "K",
+        x = values$Tid$id
+      )
     }
   }
 

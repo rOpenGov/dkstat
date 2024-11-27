@@ -227,8 +227,10 @@ You need to build your query based on the text column that each variable
 contains in the meta_data\$values list.
 
 ``` r
-aulaar <- dst_get_data(table = "AULAAR", KØN = "Total", PERPCT = "Per cent of the labour force", Tid = 2013,
-                       lang = "en")
+aulaar <- dst_get_data(
+  table = "AULAAR", KØN = "Total", PERPCT = "Per cent of the labour force", Tid = 2013,
+  lang = "en"
+)
 str(aulaar)
 ```
 
@@ -250,13 +252,15 @@ Let’s query the statbank using more than one value for each variable.
 ``` r
 folk1a_meta <- dst_meta("folk1a", lang = "da")
 
-str(dst_get_data(table = "folk1a",
-                 Tid = "*",
-                 CIVILSTAND = "*",
-                 ALDER = "*",
-                 OMRÅDE = c("Hele landet", "København", "Dragør", "Albertslund"),
-                 lang = "da", 
-                 meta_data = folk1a_meta))
+str(dst_get_data(
+  table = "folk1a",
+  Tid = "*",
+  CIVILSTAND = "*",
+  ALDER = "*",
+  OMRÅDE = c("Hele landet", "København", "Dragør", "Albertslund"),
+  lang = "da",
+  meta_data = folk1a_meta
+))
 ```
 
     ## 'data.frame':    172720 obs. of  5 variables:
@@ -275,9 +279,11 @@ You can use the star as a alternative to writing all the text values for
 the variable.
 
 ``` r
-my_query <- list(OMRÅDE = c("Hele landet", "København", "Frederiksberg", "Odense"),
-                 CIVILSTAND = "Ugift",
-                 TID = "*")
+my_query <- list(
+  OMRÅDE = c("Hele landet", "København", "Frederiksberg", "Odense"),
+  CIVILSTAND = "Ugift",
+  TID = "*"
+)
 
 str(dst_get_data(table = "folk1a", query = my_query, lang = "da"))
 ```

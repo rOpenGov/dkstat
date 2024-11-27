@@ -9,9 +9,11 @@ dst_get_tables <- function(lang = "da") {
   }
 
   # prepare the url
-  dst_url <- paste0("http://api.statbank.dk/v1/tables?lang=",
-                    lang,
-                    "&format=JSON")
+  dst_url <- paste0(
+    "http://api.statbank.dk/v1/tables?lang=",
+    lang,
+    "&format=JSON"
+  )
 
   # get data
   dst_tables <- httr::GET(url = dst_url)

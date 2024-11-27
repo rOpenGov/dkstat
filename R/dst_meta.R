@@ -21,8 +21,10 @@ dst_meta <- function(table, ..., lang = "da") {
   meta <- httr::GET(url = dkstat_url)
 
   ## Parse from JSON
-  meta <- jsonlite::fromJSON(txt = httr::content(meta, as = "text"),
-                             simplifyDataFrame = TRUE)
+  meta <- jsonlite::fromJSON(
+    txt = httr::content(meta, as = "text"),
+    simplifyDataFrame = TRUE
+  )
 
   ## Structure results
   meta <- dst_meta_parse(meta, lang)
