@@ -5,12 +5,15 @@
 \title{This function returns the entire table requested data from the StatBank.
 (http://www.statistikbanken.dk/statbank5a/ or http://www.dst.dk)}
 \usage{
-dst_get_all_data(table, lang = "da")
+dst_get_all_data(table, lang = "da", parse_dst_tid = TRUE)
 }
 \arguments{
 \item{table}{Table from StatBank.}
 
 \item{lang}{language. "en" for english or "da" for danish.}
+
+\item{parse_dst_tid}{Logical. Default is TRUE. The date will be the first
+day of the period and the time zone is "UTC" and not the Danish "CET".}
 }
 \description{
 Get all data from a table in the StatBank. This function

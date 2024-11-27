@@ -12,24 +12,25 @@
 #' @inheritParams dst_get_data
 #' @family Data retrival functions
 #' @author Aleksander Bang-Larsen <contact@@aleksanderbl.dk>
-dst_get_all_data <- function(table, lang = "da") {
-  
-  # Get metadata for table  
+dst_get_all_data <- function(table, lang = "da", parse_dst_tid = TRUE) {
+
+  # Get metadata for table
   metadata <- dst_meta(table)
-  
+
   # Extract variable names from metadata
   variable_names <- get_vars(metadata)
-  
+
   # Get all options for each variable as a query-list
   query <- get_var_options(metadata, variable_names)
-  
+
   # Request table with query params
   data <- dst_get_data(
     table = table,
     query = query,
-    lang = lang
+    lang = lang,
+    parse_dst_tid = parse_dst_tid
   )
-  
+
   return(data)
 }
 
