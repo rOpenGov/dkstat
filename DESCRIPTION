@@ -1,6 +1,6 @@
 Type: Package
 Package: dkstat
-Title: API connection to the StatBank from Statistics Denmark.
+Title: API connection to the StatBank from Statistics Denmark
 Version: 0.09
 Date: 2024-11-15
 Authors@R: c(
