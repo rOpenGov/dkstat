@@ -6,7 +6,8 @@ Statistics Denmark StatBank API connection
 <!-- badges: start -->
 
 [![rOG-badge](https://ropengov.github.io/rogtemplate/reference/figures/ropengov-badge.svg)](http://ropengov.org/)
-[![codecov](https://codecov.io/gh/rOpenGov/dkstat/graph/badge.svg)](https://codecov.io/gh/rOpenGov/dkstat)
+[![Codecov test
+coverage](https://codecov.io/gh/ropengov/dkstat/graph/badge.svg)](https://app.codecov.io/gh/ropengov/dkstat)
 [![R-CMD-check](https://github.com/rOpenGov/dkstat/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rOpenGov/dkstat/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
