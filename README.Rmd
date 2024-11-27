@@ -23,12 +23,43 @@ dit funktionskald.
 
 ## Installation
 
-You can only install the development version from github, using Hadley Wickham's [devtools](http://cran.r-project.org/web/packages/devtools/index.html) package:
-
+```{r check_cran, include=FALSE}
+if (!require(available)) install.packages("available")
+is_on_cran <- !available::available_on_cran("dkstat")
 ```
-if(!require("devtools")) install.packages("devtools")
-library("devtools")
-install_github("rOpenGov/dkstat")
+
+```{r cran_instruct, echo=FALSE, results='asis', eval=is_on_cran}
+cat("You can install `{dkstat}` from CRAN with:")
+```
+
+```{r cran_code, eval=FALSE, include=is_on_cran}
+install.packages("dkstat")
+```
+
+```{r r_universe_instruct, echo=FALSE, results='asis'}
+if (is_on_cran) {
+  cat("Or you can install the latest pre-release version of `{dkstat}` from r-universe with:")
+} else if (!is_on_cran) {
+  cat("You can install `{dkstat}` from r-universe with:")
+}
+```
+
+```{r r_universe, eval=FALSE}
+install.packages(
+  "dkstat",
+  repos = c(
+    ropengov = "https://ropengov.r-universe.dev",
+    getOption("repos")
+  )
+)
+```
+
+You can install the latest development version of `{dkstat}` from [GitHub](https://github.com/aleksanderbl29/dkstat) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("aleksanderbl29/dkstat")
+```
 ```
 
 ## Examples

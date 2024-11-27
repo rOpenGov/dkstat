@@ -27,41 +27,50 @@ spørger efter i dit funktionskald.
 
 ## Installation
 
-You can only install the development version from github, using Hadley
-Wickham’s
-[devtools](http://cran.r-project.org/web/packages/devtools/index.html)
-package:
-
-    if(!require("devtools")) install.packages("devtools")
-    library("devtools")
-    install_github("rOpenGov/dkstat")
-
-## Examples
-
-The default language is danish, but have got a lang parameter that you
-can change from “da” to “en” if you wan’t the data returned in English.
-
-### Four basic function
-
-There are four basic functions to learn:
-
-- dst_search() This function makes it possible to search through the
-  different tables for a word or a phrase.
-- dst_tables() This function downloads all the possible tables
-  available.
-- dst_meta() This function lets you download the meta data for a
-  specific table, so you can see the description, unit, variables and
-  values you can download data for.  
-- dst_get_data() lets you download the actual data you wan’t.
-
-Here are a few simple examples that will go through the basics of
-requesting data from the StatBank and the structure of the output.
-
-First, we’ll load the package:
+You can install `{dkstat}` from r-universe with:
 
 ``` r
-library(dkstat)
+install.packages(
+  "dkstat",
+  repos = c(
+    ropengov = "https://ropengov.r-universe.dev",
+    getOption("repos")
+  )
+)
 ```
+
+You can install the latest development version of `{dkstat}` from
+[GitHub](https://github.com/aleksanderbl29/dkstat) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("aleksanderbl29/dkstat")
+```
+
+
+    ## Examples
+
+    The default language is danish, but have got a lang parameter that you can change
+    from "da" to "en" if you wan't the data returned in English.
+
+    ### Four basic function
+
+    There are four basic functions to learn:
+
+    - dst_search() This function makes it possible to search through the different tables for a word or a phrase.
+    - dst_tables() This function downloads all the possible tables available.
+    - dst_meta() This function lets you download the meta data for a specific table, so you can see the description,
+      unit, variables and values you can download data for.  
+    - dst_get_data() lets you download the actual data you wan't.
+
+    Here are a few simple examples that will go through the basics of requesting data from the StatBank
+    and the structure of the output.  
+
+    First, we'll load the package:
+
+
+    ``` r
+    library(dkstat)
 
 ## The search function
 
