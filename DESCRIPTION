@@ -22,10 +22,7 @@ Imports:
     lubridate,
     stringr
 Suggests:
-    mapDK,
     testthat
-Remotes:
-    sebastianbarfort/mapDK
 Encoding: UTF-8
 Roxygen: list(wrap = FALSE)
 RoxygenNote: 7.3.2
