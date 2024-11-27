@@ -12,7 +12,7 @@ dst_find_val_id(meta_data, variable, values_text = NULL)
 
 \item{variable}{The variable to search in.}
 
-\item{values}{Character vector. The values you want to extract the IDs for. If NULL, the returned value will be "*".}
+\item{values_text}{Character vector. The values you want to extract the IDs for. If NULL, the returned value will be "*".}
 }
 \description{
 This is a helper function to extract the ID's in the values list

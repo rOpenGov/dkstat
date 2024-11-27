@@ -10,6 +10,12 @@ dst_query_match(table, lang, meta_data, query, format)
 \item{table}{Table from StatBank.}
 
 \item{lang}{language. "en" for english and "da" for danish.}
+
+\item{meta_data}{A meta data object to extract values from}
+
+\item{query}{query to match against}
+
+\item{format}{Format to specify match for csv import (not used)}
 }
 \description{
 This is a helper function to return the ids based on the text values.

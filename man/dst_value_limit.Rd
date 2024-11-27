@@ -8,6 +8,11 @@ The API has a limit of 100.000 values.}
 \usage{
 dst_value_limit(query, dst_meta)
 }
+\arguments{
+\item{query}{Query object to analyse}
+
+\item{dst_meta}{Meta data to filer query with}
+}
 \description{
 This is a helper function that returns the number
 of values the call will return.
