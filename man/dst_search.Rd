@@ -2,7 +2,7 @@
 % Please edit documentation in R/dst_search.R
 \name{dst_search}
 \alias{dst_search}
-\title{This function provides a search function for the description field of available 
+\title{This function provides a search function for the description field of available
 data series}
 \usage{
 dst_search(string = "gpd", field = "text", lang = "da", use_cache = NULL)
@@ -17,6 +17,6 @@ dst_search(string = "gpd", field = "text", lang = "da", use_cache = NULL)
 \item{use_cache}{A logical scalar. Should the function call Statbank or use a (possibly outdated) saved version of their tables?}
 }
 \description{
-This function provides a search function for the description field of available 
+This function provides a search function for the description field of available
 data series
 }

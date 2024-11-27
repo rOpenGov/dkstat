@@ -5,3 +5,4 @@
 ^\.github$
 ^pkgdown$
 ^_pkgdown\.yml$
+^data-raw$

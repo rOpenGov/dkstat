@@ -31,3 +31,6 @@ Roxygen: list(wrap = FALSE)
 RoxygenNote: 7.3.2
 X-schema.org-isPartOf: http://ropengov.org/
 X-schema.org-keywords: ropengov
+Depends: 
+    R (>= 2.10)
+LazyData: true
