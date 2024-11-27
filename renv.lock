@@ -7,6 +7,10 @@
         "URL": "https://cloud.r-project.org"
       },
       {
+        "Name": "rOpenGov",
+        "URL": "https://ropengov.r-universe.dev"
+      },
+      {
         "Name": "aleksanderbl29",
         "URL": "https://aleksanderbl29.r-universe.dev"
       },
