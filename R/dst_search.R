@@ -17,10 +17,8 @@ dst_search <- function(string = "gpd",
 
     series <- httr::content(httr::GET(url = url))
     series <- jsonlite::fromJSON(txt = series)
-  } else if (!is.null(use_cache) && lang == "da") {
-    series <- dkstat::tables_da
   } else {
-    series <- dkstat::tables_en
+    series <- dkstat::tables
   }
 
   matches <- grep(string, series[, field], ignore.case = TRUE)
