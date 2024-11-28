@@ -13,7 +13,9 @@
 #'   requested.
 #' @param format character value. "CSV" or "BULK". If you choose BULK then you
 #'   need to select a value for each of the parameters.
-#' @param value_presentation For now, "value" or "default"
+#' @param value_presentation For now, "value" or "default". When a table with
+#'   observations that have the same name, this is automatically changed to
+#'   CodeAndValue.
 #' @export
 #' @family Data retrival functions
 #' @importFrom utils read.csv read.csv2
@@ -47,6 +49,11 @@ dst_get_data <- function(table,
     }
   }
 
+  # If meta_data is NULL then get it automatically
+  if (is.null(meta_data)) {
+    meta_data <- dst_meta(table, lang = lang)
+  }
+
   # Force the names to be uppercase to match requirements from API
   names(query) <- toupper(names(query))
   dst_names <- names(query)
@@ -59,6 +66,11 @@ dst_get_data <- function(table,
     query = query,
     format = format
   )
+
+  # If overlaps in values are detected use CodeAndValue as presentation
+  if (dst_determine_overlaps(meta_data)) {
+    value_presentation <- "CodeAndValue"
+  }
 
   query$valuePresentation <- value_presentation
   query$lang <- lang
@@ -108,7 +120,13 @@ dst_get_data <- function(table,
   } else {
     stop("You haven't selected an appropiate language ('da' or 'en'")
   }
+
   names(dst_data) <- c(dst_names, "value")
+
+  # Remove the code
+  if (dst_determine_overlaps(meta_data)) {
+    dst_data$TID <- sapply(stringr::str_split(dst_data$TID, "\\s+"), `[`, 2)
+  }
 
   # Parse the dates if param is TRUE
   if (parse_dst_tid) {

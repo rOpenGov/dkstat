@@ -34,7 +34,9 @@ requested.}
 \item{format}{character value. "CSV" or "BULK". If you choose BULK then you
 need to select a value for each of the parameters.}
 
-\item{value_presentation}{For now, "value" or "default"}
+\item{value_presentation}{For now, "value" or "default". When a table with
+observations that have the same name, this is automatically changed to
+CodeAndValue.}
 }
 \description{
 Get data from a table in the StatBank.
