@@ -79,7 +79,10 @@ dst_get_data <- function(table,
   dst_data <- httr::GET(dst_url)
 
   # Make sure the returned status is OK
-  if (httr::status_code(dst_data) == 404) {
+  if (httr::status_code(dst_data) == 404 && table %in% dkstat::tables$id) {
+    stop("The resource could not be reached.
+         Please submit an issue on https://github.com/rOpenGov/dkstat/issues")
+  } else if (httr::status_code(dst_data) == 404) {
     stop("The resource you requested have not been found.
         Please make sure that the table is in `tables`")
   } else if (httr::status_code(dst_data) != 200) {
