@@ -18,8 +18,7 @@ This package is in early *BETA* and new changes will most likely not have backwa
 ### A short message in Danish
 
 Denne R Statistics pakke indeholder funktioner til at give dig adgang til data gennem API'en fra Danmarks Statistik.
-Funktionerne henter data fra Statistikbanken og retunerer data.frame objekter med værdierne du spørger efter i
-dit funktionskald.
+Funktionerne henter data fra Statistikbanken og retunerer data.frame objekter med værdierne du spørger efter i dit funktionskald.
 
 ## Installation
 
@@ -54,12 +53,11 @@ install.packages(
 )
 ```
 
-You can install the latest development version of `{dkstat}` from [GitHub](https://github.com/aleksanderbl29/dkstat) with:
+You can install the latest development version of `{dkstat}` from [GitHub](https://github.com/rOpenGov/dkstat) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("aleksanderbl29/dkstat")
-```
+devtools::install_github("rOpenGov/dkstat")
 ```
 
 ## Examples
