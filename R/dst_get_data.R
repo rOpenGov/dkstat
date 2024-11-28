@@ -80,7 +80,7 @@ dst_get_data <- function(table,
 
   # Make sure the returned status is OK
   if (httr::status_code(dst_data) != 200) {
-    stop(httr::content(dst_data, as = "text", encoding = "UTF-8")$message)
+    stop(httr::content(dst_data, encoding = "UTF-8")$message)
   }
 
   # Get the content
