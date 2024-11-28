@@ -79,7 +79,10 @@ dst_get_data <- function(table,
   dst_data <- httr::GET(dst_url)
 
   # Make sure the returned status is OK
-  if (httr::status_code(dst_data) != 200) {
+  if (httr::status_code(dst_data) == 404) {
+    stop("The resource you requested have not been found.
+        Please make sure that the table is in `tables`")
+  } else if (httr::status_code(dst_data) != 200) {
     stop(httr::content(dst_data, encoding = "UTF-8")$message)
   }
 
