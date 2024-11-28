@@ -7,6 +7,7 @@
 #' @param query query to match against
 #' @param format Format to specify match for csv import (not used)
 #'
+#' @noRd
 dst_query_match <- function(table, lang, meta_data, query, format) {
   # if no meta data is supplied we download this to match the request.
   if (is.null(meta_data)) {

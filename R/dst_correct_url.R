@@ -1,6 +1,7 @@
 #' Corrects url encoding for Danish letters.
 #'
 #' @param url A build url.
+#' @noRd
 dst_correct_url <- function(url) {
   url <- stringr::str_replace_all(
     string = url,

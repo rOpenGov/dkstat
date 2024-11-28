@@ -3,6 +3,7 @@
 #' @param dst_date A vector of length one or more with date formats like
 #'   1982M12D09, 1982M12, 1982Q4 or 1982
 #' @returns Returns the input date formatted to be Europe/Copenhagen
+#' @noRd
 dst_date_parse <- function(dst_date) {
   tz <- "Europe/Copenhagen"
 

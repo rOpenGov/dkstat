@@ -9,6 +9,7 @@
 #' @param meta The returned meta data from the function meta_dst.
 #' @param lang The language from the orignal dst_meta function (due to an error
 #'   in the API)
+#' @noRd
 dst_meta_parse <- function(meta, lang) {
   # Get basic info on the table.
   # The basics contains a description on what

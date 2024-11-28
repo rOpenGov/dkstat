@@ -4,6 +4,7 @@
 #'
 #' @param query Query object to analyse
 #' @param dst_meta Meta data to filer query with
+#' @noRd
 dst_value_limit <- function(query, dst_meta) {
   # is the element in the list a "*"?
   is_star <- lapply(query, function(x) {

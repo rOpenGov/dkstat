@@ -5,6 +5,7 @@
 #' @param variable The variable to search in.
 #' @param values_text Character vector. The values you want to extract the IDs
 #'   for. If NULL, the returned value will be "*".
+#' @noRd
 dst_find_val_id <- function(meta_data, variable, values_text = NULL) {
   names(meta_data$values) <- toupper(names(meta_data$values))
 
