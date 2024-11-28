@@ -115,6 +115,7 @@ dst_get_data <- function(table,
   } else {
     stop("You haven't selected an appropiate language ('da' or 'en'")
   }
+
   names(dst_data) <- c(dst_names, "value")
 
   # Remove the code
