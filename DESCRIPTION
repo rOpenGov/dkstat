@@ -1,8 +1,8 @@
 Type: Package
 Package: dkstat
 Title: API connection to the StatBank from Statistics Denmark
-Version: 0.09
-Date: 2024-11-15
+Version: 0.0.0.9001
+Date: 2024-12-10
 Authors@R: c(
     person("Aleksander", "Bang-Larsen", , "contact@aleksanderbl.dk", role = c("aut", "cre"),
     comment = c(ORCID = "0009-0007-7984-4650")),

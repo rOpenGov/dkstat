@@ -1,3 +1,9 @@
+# dkstat v0.0.0.9001 (2024-12-10)
+
+* Use tidyverse conventions for versioning
+* Add function to parse week-numbers
+* Add `dst_get_all_data()` to get the entire table.
+
 # Changes to v0.07
   * You can now download a data.frame with all the available tables.
   * Half yearly data can now be parsed.
