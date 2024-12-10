@@ -6,10 +6,10 @@ Date: 2024-11-15
 Authors@R: c(
     person("Aleksander", "Bang-Larsen", , "contact@aleksanderbl.dk", role = c("aut", "cre"),
     comment = c(ORCID = "0009-0007-7984-4650")),
-    person("Kenneth", "Rose", , "kennethrose82@gmail.com", role = c("aut")),
+    person("Kenneth", "Rose", , "kennethrose82@gmail.com", role = c("aut"),
+    comment = c("Original creator")),
     person("Thomas J.", "leeper", role = "ctb")
   )
-Maintainer: Aleksander Bang-Larsen <contact@aleksanderbl.dk>
 Description: This package provides a few simple functions that can be used
     to query the StatBank from Statistics Denmark.
 License: GPL-2
