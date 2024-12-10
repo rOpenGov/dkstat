@@ -6,6 +6,10 @@ test_that("dst_date_parse gives the correct class.", {
   expect_equal(class(dst_date_parse(dst_date = "2000M01D01")), exp_dates)
   expect_equal(class(dst_date_parse(dst_date = c("2000M01D20", "2000M02D21", "2000M03D23", "2000M04D24"))), exp_dates)
 
+  # Weekly
+  expect_equal(class(dst_date_parse(dst_date = "2000U01")), exp_dates)
+  expect_equal(class(dst_date_parse(dst_date = c("2000U01", "2000U03", "2023U47", "2005U11"))), exp_dates)
+
   # Monthly
   expect_equal(class(dst_date_parse(dst_date = "2000M01")), exp_dates)
   expect_equal(class(dst_date_parse(dst_date = c("2000M01", "2000M02", "2000M03", "2000M04", "2000M10", "2000M11"))), exp_dates)
@@ -32,6 +36,10 @@ test_that("Test that dst_date_parse stops when the input is bad.", {
   # Daily
   expect_error(dst_date_parse(dst_date = "2000M01D35"))
   expect_error(dst_date_parse(dst_date = "2000M10D40"))
+
+  # Daily
+  expect_error(dst_date_parse(dst_date = "2000U57"))
+  expect_error(dst_date_parse(dst_date = "20000U40"))
 
   # Monthly
   expect_error(dst_date_parse(dst_date = "20000M01"))
