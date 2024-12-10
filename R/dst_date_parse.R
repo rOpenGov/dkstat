@@ -32,13 +32,13 @@ dst_date_parse <- function(dst_date) {
     # nolint start
       all(stringr::str_detect(dst_date, "^[0-9]{4}U(0[1-9]|[1-4][0-9]|5[0-2])$")) &&
       all(stringr::str_length(string = dst_date) == 7)
-    # nolint end
-    ) {
+  ) {
     # Weekly format
     # Find year and and week
     year <- lubridate::ymd(paste0(
       stringr::str_sub(dst_date, start = 1L, end = 4L),
       "-01-01"))
+    # nolint end
 
     week <- stringr::str_sub(dst_date, start = -2L)
 
