@@ -18,12 +18,16 @@ dst_find_val_id <- function(meta_data, variable, values_text = NULL) {
     # nolint start
     id_test <- as.character(values_text) %in% meta_data$values[[variable]]$text
     if (sum(id_test) != length(values_text)) {
+      no_match_index <- !as.character(values_text) %in% meta_data$values[[variable]]$text
+      not_matched <- values_text[no_match_index] |>
+        paste(collapse = "\n")
       stop(
         paste0(
           "All the values_text could not be matched in the text field of the values column of ",
           variable,
-          ". It might be a typo or maybe the value isn't present in the variable."
-        )
+          "\n  It might be a typo or maybe the value isn't present in the variable.",
+          "\n  Specifically, the following values were not matched:\n\n"
+        ), paste(not_matched)
       )
     }
     # nolint end
