@@ -48,8 +48,8 @@ dkstat::dst_get_all_data("laby04") |>
 When accessing data from a table, e.g. "laby04" there is no obvious way to know what column is geographic.
 
 ```{r}
-dkstat::dst_get_all_data("laby04") |> 
-  distinct(OMRÅDE, .keep_all = TRUE) |> 
+dkstat::dst_get_all_data("laby01") |> 
+  distinct(KOMGRP, .keep_all = TRUE) |> 
   tail()
 ```
 
@@ -65,7 +65,7 @@ Below you can find the description of each S3-class that is used (/abused) to en
 
 ## Classes
 
-Each type of geographic variable has its own S3 class. The class is determined by what observations is included in the variable. The class-assignment is done by a series of custom class-constructors called `new_dkstat_*()`. One example is `new_dkstat_KOMGRP()` which assigns the S3 class `dkstat_KOMGRP` to a dataset. The class is assigned "after the fact", as Wickham calls it, ensuring that the usual behaviour of a data.frame is preserved for all the functions that don't know about these special classes (e.g. the `{dplyr}` functions).
+Each type of geographic variable has its own S3 class. The class is determined by what observations is included in the variable. The class-assignment is done by a series of custom class-constructors called `new_dkstat_*()`. One example is `new_dkstat_KOMGRP()` which assigns the S3 class `dkstat_KOMGRP` to a dataset. The class is assigned "after the fact", as Wickham calls it, ensuring that the usual behaviour of a data.frame is preserved, through inheritance for all the functions that don't know about these special classes (e.g. the `{dplyr}` functions). Thus, the dkstat-classes are subclasses of `data.frame`.
 
 ## Method dispatch
 
