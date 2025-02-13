@@ -49,7 +49,7 @@ komgrp <- readr::read_csv2("data-raw/komgrp.csv") |>
   ) |>
   tibble::deframe()
 
-usethis::use_data(komgrp, compress = "xz", overwrite = TRUE)
+usethis::use_data(komgrp, compress = "xz", overwrite = TRUE, internal = TRUE)
 
 
 # Municipality groups with "Hele landet" as well
@@ -161,4 +161,4 @@ kom_omraade <- c(
   "851 Aalborg"
 )
 
-usethis::use_data(kom_omraade, compress = "xz", overwrite = TRUE)
+usethis::use_data(kom_omraade, compress = "xz", overwrite = TRUE, internal = TRUE)
