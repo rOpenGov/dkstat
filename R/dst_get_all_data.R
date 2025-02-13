@@ -23,12 +23,14 @@ dst_get_all_data <- function(table, lang = "da", parse_dst_tid = TRUE) {
   query <- get_var_options(metadata, variable_names)
 
   # Request table with query params
-  data <- dst_get_data(
+  response <- dst_get_data(
     table = table,
     query = query,
     lang = lang,
     parse_dst_tid = parse_dst_tid
   )
+
+  data <- determine_geographic_properties(response)
 
   return(data)
 }
