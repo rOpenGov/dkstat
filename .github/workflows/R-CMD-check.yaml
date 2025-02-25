@@ -54,6 +54,7 @@ jobs:
           extra-packages: |
             any::rcmdcheck
             any::geodk
+            any::tidyverse
           needs: |
             check
 
