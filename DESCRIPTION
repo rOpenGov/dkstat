@@ -1,8 +1,8 @@
 Type: Package
 Package: dkstat
 Title: API connection to the StatBank from Statistics Denmark
-Version: 0.0.0.9001
-Date: 2024-12-10
+Version: 0.0.0.9002
+Date: 2025-02-25
 Authors@R: c(
     person("Aleksander", "Bang-Larsen", , "contact@aleksanderbl.dk", role = c("aut", "cre"),
     comment = c(ORCID = "0009-0007-7984-4650")),
@@ -22,7 +22,10 @@ Imports:
     lubridate,
     stringr
 Suggests:
-    testthat
+    knitr,
+    rmarkdown,
+    testthat,
+    dplyr
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 Config/testthat/edition: 3
@@ -31,5 +34,6 @@ RoxygenNote: 7.3.2
 X-schema.org-isPartOf: http://ropengov.org/
 X-schema.org-keywords: ropengov
 Depends: 
-    R (>= 2.10)
+    R (>= 4.1)
 LazyData: true
+VignetteBuilder: knitr

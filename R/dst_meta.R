@@ -8,8 +8,10 @@
 #' @param table The name of the table you want meta data for.
 #' @param ... Ignored.
 #' @param lang You can choose "en" for english or "da" for danish.
+#' @param geo You can choose if the function should return the geographic
+#'   properties for the metadata. Mostly for internal use.
 #' @export
-dst_meta <- function(table, ..., lang = "da") {
+dst_meta <- function(table, ..., lang = "da", geo = FALSE) {
   ## Create and parse url
   dkstat_url <- paste0("http://api.statbank.dk/v1/tableinfo/", table, "?")
   dkstat_url <- httr::parse_url(url = dkstat_url)
@@ -27,7 +29,11 @@ dst_meta <- function(table, ..., lang = "da") {
   )
 
   ## Structure results
-  meta <- dst_meta_parse(meta, lang)
+  if (isFALSE(geo)) {
+    meta <- dst_meta_parse(meta, lang)
+  } else if (isTRUE(geo)) {
+    meta <- dst_meta_map(meta, lang)
+  }
 
   return(meta)
 }

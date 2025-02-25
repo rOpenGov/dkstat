@@ -6,7 +6,7 @@
 Statistics Denmark. (http://www.statistikbanken.dk/statbank5a/ or
 http://www.dst.dk)}
 \usage{
-dst_meta(table, ..., lang = "da")
+dst_meta(table, ..., lang = "da", geo = FALSE)
 }
 \arguments{
 \item{table}{The name of the table you want meta data for.}
@@ -14,6 +14,9 @@ dst_meta(table, ..., lang = "da")
 \item{...}{Ignored.}
 
 \item{lang}{You can choose "en" for english or "da" for danish.}
+
+\item{geo}{You can choose if the function should return the geographic
+properties for the metadata. Mostly for internal use.}
 }
 \description{
 This function POSTs a request for meta data on a table from Statistics
