@@ -7,6 +7,7 @@
 #'
 #'
 #' @inheritParams dst_meta_parse
+#' @importFrom stats na.omit
 #' @noRd
 dst_meta_map <- function(meta, lang) {
   # Get basic info on the table.
