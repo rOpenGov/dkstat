@@ -56,7 +56,7 @@ jobs:
 
       - name: Install package from r-universe
         run: |
-          install.packages('geodk', repos = c('https://ropengov.r-universe.dev', 'https://cloud.r-project.org'))
+          renv::install_github("rOpenGov/geodk")
         shell: Rscript {0}
 
       - uses: r-lib/actions/check-r-package@v2
