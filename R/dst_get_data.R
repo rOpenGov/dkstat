@@ -133,7 +133,7 @@ dst_get_data <- function(table,
     dst_data$TID <- dst_date_parse(dst_date = dst_data$TID)
   }
 
-  data <- determine_geographic_properties(table, dst_data)
+  data <- determine_geo_properties(table, dst_data)
 
   return(data)
 }
