@@ -28,7 +28,6 @@ dst_get_all_data <- function(table, lang = "da", parse_dst_tid = TRUE) {
     table = table,
     query = query,
     lang = lang,
-    # format = "BULK",
     parse_dst_tid = parse_dst_tid
   )
 

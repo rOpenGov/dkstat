@@ -18,16 +18,11 @@ dst_meta_map <- function(meta, lang) {
 
   # Get the description of the variables.
   # If map does not exist, we return a NULL
-  if (!"map" %in% colnames(meta[["variables"]])) {return(NULL)}
+  if (!"map" %in% colnames(meta[["variables"]])) {
+    return(NULL)
+  }
   variables <- meta[["variables"]][, c("id", "text", "map")] |>
     na.omit()
-
-  # Structure the values the user can choose in their query
-  # values <- meta[["variables"]][, "values"]
-  # names(values) <- variables$id
-
-  # Retrieve the geographic levels
-  # values <- values[names(values) %in% variables$id]
 
   # Return the data as a list.
   return(list(

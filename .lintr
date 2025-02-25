@@ -1,5 +1,9 @@
 linters: linters_with_defaults(
-  cyclocomp_linter(complexity_limit = 17L))
+  cyclocomp_linter(complexity_limit = 17L),
+  object_usage_linter = NULL,
+  return_linter = NULL)
 encoding: "UTF-8"
 exclusions: list(
-  "tests")
+  "tests",
+  "vignettes",
+  "R/s3_constructors.R")

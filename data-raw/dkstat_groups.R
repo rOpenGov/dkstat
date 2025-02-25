@@ -15,7 +15,7 @@ create_groups <- function(x) {
   id <- 0
   groups <- numeric(nrow(x))
 
-  for (i in 1:nrow(x)) {
+  for (i in seq_len(x)) {
     if (x$NIVEAU[i] == 1) {
       id <- id + 1
     }
@@ -161,4 +161,9 @@ kom_omraade <- c(
   "851 Aalborg"
 )
 
-usethis::use_data(kom_omraade, compress = "xz", overwrite = TRUE, internal = TRUE)
+usethis::use_data(
+  kom_omraade,
+  compress = "xz",
+  overwrite = TRUE,
+  internal = TRUE
+)

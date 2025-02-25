@@ -27,7 +27,6 @@ get_meta <- function(table, lang = "da") {
 
 # Get all tables
 tbls <- dst_get_tables()$id
-# tbls <- c("laby04", "vandud")
 
 # Define empty map list
 maps <- list()
