@@ -24,7 +24,7 @@ library(tidyverse)
 
 # What is this?
 
-This documents the technical specification for the integration between `{dkstat}` and `{geodk}`. It can be found on this page and in [the `{geodk}` documentation](https://ropengov.github.io/geodk/articles/tech-specs-for-dkstat.html). `vignette("tech-specs-for-dkstat", package = "geodk")`.
+This documents the technical specification for the integration between `{dkstat}` and `{geodk}`. It can be found on this page and in [the `{geodk}` documentation](https://ropengov.github.io/geodk/articles/tech-specs-for-dkstat.html). vignette("tech-specs-for-dkstat", package = "geodk").
 
 ## Why would you want to read this? 
 
@@ -32,7 +32,7 @@ I honestly don't know. This document is written mostly for me [(Aleksander)](htt
 
 # Integration usage
 
-A thorough usage guide can be found in `vignette("geodk", package = "dkstat")`, but below I will provide a technical walkthrough of the integration.
+A thorough usage guide can be found in vignette("geodk", package = "dkstat"), but below I will provide a technical walkthrough of the integration.
 
 ## Main goal
 
