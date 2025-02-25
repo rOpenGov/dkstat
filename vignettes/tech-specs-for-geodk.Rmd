@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup, include = FALSE}
+```{r setup, include = FALSE, eval = FALSE}
 library(dkstat)
 library(geodk)
 library(tidyverse)
