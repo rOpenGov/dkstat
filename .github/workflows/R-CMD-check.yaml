@@ -54,17 +54,9 @@ jobs:
           needs: |
             check
 
-      - name: Enable r-universe repo
-        run: |
-          options(repos = c(
-            ropengov = 'https://ropengov.r-universe.dev',
-            CRAN = 'https://cloud.r-project.org'
-          ))
-        shell: Rscript {0}
-
       - name: Install package from r-universe
         run: |
-          install.packages('geodk')
+          install.packages('geodk', repos = c('https://ropengov.r-universe.dev', 'https://cloud.r-project.org'))
         shell: Rscript {0}
 
       - uses: r-lib/actions/check-r-package@v2
