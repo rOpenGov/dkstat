@@ -19,7 +19,6 @@ knitr::opts_chunk$set(
 library(dkstat)
 library(geodk)
 library(tidyverse)
-# library(ggflowchart)
 ```
 
 # What is this?
@@ -49,7 +48,7 @@ When accessing data from a table, e.g. "laby04" there is no obvious way to know 
 
 ```{r}
 dkstat::dst_get_all_data("laby01") |> 
-  distinct(KOMGRP, .keep_all = TRUE) |> 
+  dplyr::distinct(KOMGRP, .keep_all = TRUE) |> 
   tail()
 ```
 
