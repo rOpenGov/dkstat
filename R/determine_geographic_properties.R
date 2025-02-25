@@ -1,41 +1,39 @@
 # determine_geographic_properties.R
 # This file contains the logic to decide what kind of geographic information is
 # included in a given dataset. The function is mainly used in
-# `dst_get_all_data()`
+# `dst_get_data()` - Thus affecting `dst_get_all_data()`
 
-determine_geographic_properties <- function(df) {
+determine_geographic_properties <- function(table, df) {
   clnms <- colnames(df)
 
-  if (is_geographic(clnms)) {
-    chosen_constructor <- choose_geo_class(df, clnms)
+  meta <- dst_meta(table, lang = "da", geo = TRUE)
+
+  if (is_geographic(meta)) {
+    chosen_constructor <- choose_geo_class(meta)
     chosen_constructor(df)
   } else {
     return(df)
   }
 }
 
-is_geographic <- function(varnames) {
-  # If any of the variable names are recorded as geographic, return TRUE
-  any(varnames %in% geo_vars)
+# Check if the metadata indicates a geographic variable
+is_geographic <- function(meta) {
+  if (is.null(meta)) {
+    return(FALSE)
+  } else if (!is.null(meta)) {
+    return(TRUE)
+  }
 }
 
-choose_geo_class <- function(df, clnms) {
-  g_vars <- intersect(geo_vars, clnms)
+# Choose a class constructor
+choose_geo_class <- function(meta) {
 
-  if (g_vars == "OMRÅDE") {
-    if (identical(unique(df$OMRÅDE), geographic_vectors[["kom_omraade"]])) {
-      new_dkstat_kom_omraade
-    } else if (identical(unique(df$OMRÅDE), geographic_vectors[["komgrp"]])) {
-      new_dkstat_KOMGRP
-    }
-  }
+  # Get the map variable
+  meta_class <- meta$variables$map
 
-  if (g_vars == "KOMGRP") {
-    if (identical(unique(df$KOMGRP), geographic_vectors[["kom_omraade"]])) {
-      new_dkstat_kom_omraade
-    } else if (identical(unique(df$KOMGRP), geographic_vectors[["komgrp"]])) {
-      new_dkstat_KOMGRP
-    }
-  }
+  # Paste class constructor name prefix with class name and get function
+  func <- paste0("new_dkstat_", meta_class) |> get()
+
+  return(func)
 
 }

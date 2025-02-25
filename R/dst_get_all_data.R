@@ -6,7 +6,8 @@
 #'   not need to specify anything other than a table name and you will be given
 #'   the entire contents of the table in a nice long format. This is useful for
 #'   you, if you would like to filter the table with e.g. `{dplyr}` functions or
-#'   save the entire table for archival.
+#'   save the entire table for archival. If the table is larger than the max
+#'   1.000.000 cells, then you will have to use `dst_get_data()`.
 #'
 #' @export
 #' @inheritParams dst_get_data
@@ -23,14 +24,13 @@ dst_get_all_data <- function(table, lang = "da", parse_dst_tid = TRUE) {
   query <- get_var_options(metadata, variable_names)
 
   # Request table with query params
-  response <- dst_get_data(
+  data <- dst_get_data(
     table = table,
     query = query,
     lang = lang,
+    # format = "BULK",
     parse_dst_tid = parse_dst_tid
   )
-
-  data <- determine_geographic_properties(response)
 
   return(data)
 }
