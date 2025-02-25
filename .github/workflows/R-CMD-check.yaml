@@ -45,20 +45,23 @@ jobs:
           r-version: ${{ matrix.config.r }}
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
+          extra-repositories: |
+            https://ropengov.r-universe.dev
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           cache-version: 3
           extra-packages: |
             any::rcmdcheck
+            any::geodk
           needs: |
             check
 
-      - name: Install package from r-universe
-        run: |
-          install.packages("remotes")
-          remotes::install_github("rOpenGov/geodk")
-        shell: Rscript {0}
+      # - name: Install package from r-universe
+      #   run: |
+      #     install.packages("remotes")
+      #     remotes::install_github("rOpenGov/geodk")
+      #   shell: Rscript {0}
 
       - uses: r-lib/actions/check-r-package@v2
         with:
