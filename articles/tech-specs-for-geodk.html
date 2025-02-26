@@ -79,7 +79,7 @@
 <h2 id="what-is-this">What is this?<a class="anchor" aria-label="anchor" href="#what-is-this"></a>
 </h2>
 <p>This documents the technical specification for the integration
-between <a href="https://ropengov.github.io/dkstat/">dkstat</a> and <code>{geodk}</code>. It can be found
+between <a href="https://ropengov.github.io/dkstat/">dkstat</a> and <a href="https://ropengov.github.io/geodk/" class="external-link">geodk</a>. It can be found
 on this page and in <a href="https://ropengov.github.io/geodk/articles/tech-specs-for-dkstat.html" class="external-link">the
 <code>{geodk}</code> documentation</a>.
 vignette(“tech-specs-for-dkstat”, package = “geodk”).</p>
@@ -102,7 +102,7 @@ integration.</p>
 <h3 id="main-goal">Main goal<a class="anchor" aria-label="anchor" href="#main-goal"></a>
 </h3>
 <p>The main goal of the integration between <a href="https://ropengov.github.io/dkstat/">dkstat</a> and
-<code>{geodk}</code> is to be able to run the following code and have
+<a href="https://ropengov.github.io/geodk/" class="external-link">geodk</a> is to be able to run the following code and have
 meaningful geographic information added to the statistics.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">dkstat</span><span class="fu">::</span><span class="fu"><a href="../reference/dst_get_all_data.html">dst_get_all_data</a></span><span class="op">(</span><span class="st">"laby04"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -166,8 +166,8 @@ geographic variables.</p>
 <h3 id="method-dispatch">Method dispatch<a class="anchor" aria-label="anchor" href="#method-dispatch"></a>
 </h3>
 <p>The S3 generic can be found in <code>geodk::geodk_enrich()</code>.
-The individual methods also live in <code>{geodk}</code>. This is to not
-take on <code>{geodk}</code> as a dependency in <a href="https://ropengov.github.io/dkstat/">dkstat</a>.
+The individual methods also live in <a href="https://ropengov.github.io/geodk/" class="external-link">geodk</a>. This is to not
+take on <a href="https://ropengov.github.io/geodk/" class="external-link">geodk</a> as a dependency in <a href="https://ropengov.github.io/dkstat/">dkstat</a>.
 The S3 method for the municipality group (Denmark_municipality_07) from
 above is called
 <code>geodk_enrich.dkstat_Denmark_municipality_07()</code>. Please <a href="https://github.com/rOpenGov/geodk/issues" class="external-link">open an issue</a> if you
@@ -191,7 +191,7 @@ new one to a list. This gives the below vector.</p>
 <span><span class="co">#&gt; [11] "Verden_dk"                           "Europa_DK3"                         </span></span>
 <span><span class="co">#&gt; [13] "Denmark_county"                      "Verden_dk4"          </span></span></code></pre></div>
 <p>Some of the geographic levels, such as “Verden_dk” includes other
-countries. This data is not available from <code>{geodk}</code> thus
+countries. This data is not available from <a href="https://ropengov.github.io/geodk/" class="external-link">geodk</a> thus
 leading to a message for the user informing them of this and then asking
 if it should add geometry for Denmark.</p>
 <div class="section level3">
@@ -201,7 +201,7 @@ if it should add geometry for Denmark.</p>
 are described <a href="https://www.dst.dk/da/Statistik/dokumentation/nomenklaturer/kommunegrupper" class="external-link">on
 this website</a>. This grouping includes both the individual
 municipality and five groupings. Take a look at the link if you would
-like to learn more. In the <code>{geodk}</code> backend I have created a
+like to learn more. In the <a href="https://ropengov.github.io/geodk/" class="external-link">geodk</a> backend I have created a
 list containing all the municipality names with both Statistics
 Denmark-naming and geodk-naming. In addition to that, the list is
 ordered by the municipality grouping.</p>
@@ -211,13 +211,13 @@ ordered by the municipality grouping.</p>
 <p>The method for <code>dkstat_Denmark_municipality_07</code> first
 filters the groupings from the individual municipalities. A list of the
 individual municipalities and groupings, along with their specific ids
-is stored in <code>{geodk}</code>. It is not exported to the user.</p>
+is stored in <a href="https://ropengov.github.io/geodk/" class="external-link">geodk</a>. It is not exported to the user.</p>
 <p>After filtering, it assigns the individual municipality geometries.
 The grouping geometries are also assigned as well as a column indicating
 the geographic nature of the observation - Is it a overall grouping or
 an individual municipality?</p>
 <p>The municipalities that make up the groupings are split per group and
-run through <code>sf::st_union()</code> to be returned as a
+run through <code><a href="https://r-spatial.github.io/sf/reference/geos_combine.html" class="external-link">sf::st_union()</a></code> to be returned as a
 <code>sf</code> geometry per group.</p>
 </div>
 <div class="section level3">
