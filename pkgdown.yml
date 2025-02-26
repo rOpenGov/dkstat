@@ -3,7 +3,7 @@ pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   tech-specs-for-geodk: tech-specs-for-geodk.html
-last_built: 2025-02-25T20:42Z
+last_built: 2025-02-26T07:05Z
 urls:
   reference: https://ropengov.github.io/dkstat/reference
   article: https://ropengov.github.io/dkstat/articles
