@@ -1,15 +1,22 @@
-citHeader("To cite package 'dkstat' in publications use:")
-     
- year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date, perl = TRUE)
- vers <- paste("R package version", meta$Version)
- 
- citEntry(entry="Manual",
-		  title = "dkstat: API connection to the StatBank from Statistics Denmark",
-		  author = personList(as.person("Kenneth Rose")),
-		  year = year,
-		  note = vers,
-		  textVersion =
-		  paste("Kenneth Rose (",
-				year,
-				"). dkstat: API connection to the StatBank from Statistics Denmark. ",
-				vers, ".", sep=""))
+bibentry(
+  bibtype  = "Manual",
+  other = unlist(citation(auto = meta), recursive = FALSE),
+  key   = "dkstat")
+
+bibentry(
+  bibtype  = "misc",
+  key      = "statbank_en",
+  title    = "StatBank from Statistics Denmark - Through {dkstat}",
+  author   = person("Statistics Denmark"),
+  year     = "2025",
+  url      = "https://statistikbanken.dk"
+)
+
+bibentry(
+  bibtype  = "misc",
+  key      = "statbank_dk",
+  title    = "Danmarks Statistiks Statistikbank - Tilgået med {dkstat}",
+  author   = person("Danmarks Statistik"),
+  year     = "2025",
+  url      = "https://statistikbanken.dk"
+)
