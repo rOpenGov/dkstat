@@ -58,12 +58,6 @@ jobs:
           needs: |
             check
 
-      # - name: Install package from r-universe
-      #   run: |
-      #     install.packages("remotes")
-      #     remotes::install_github("rOpenGov/geodk")
-      #   shell: Rscript {0}
-
       - uses: r-lib/actions/check-r-package@v2
         with:
           upload-snapshots: true
