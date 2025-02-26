@@ -9,6 +9,8 @@ Statistics Denmark StatBank API connection
 [![Codecov test
 coverage](https://codecov.io/gh/ropengov/dkstat/graph/badge.svg)](https://app.codecov.io/gh/ropengov/dkstat)
 [![R-CMD-check](https://github.com/rOpenGov/dkstat/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rOpenGov/dkstat/actions/workflows/R-CMD-check.yaml)
+[![dkstat status
+badge](https://ropengov.r-universe.dev/dkstat/badges/version)](https://ropengov.r-universe.dev/dkstat)
 <!-- badges: end -->
 
 This package connects to the
@@ -85,45 +87,45 @@ dst_search(string = "bnp", field = "text")
 ```
 
     ##          id
-    ## 564    NAN1
-    ## 568    NKN1
-    ## 573   NAHL2
-    ## 576   NKHO2
-    ## 579   NAHO2
-    ## 582  NAHD21
-    ## 651    NRHP
-    ## 652   VNRHP
-    ## 1300 CFABNP
+    ## 569    NAN1
+    ## 573    NKN1
+    ## 578   NAHL2
+    ## 581   NKHO2
+    ## 584   NAHO2
+    ## 587  NAHD21
+    ## 656    NRHP
+    ## 657   VNRHP
+    ## 1223 CFABNP
     ##                                                                                   text
-    ## 564  Forsyningsbalance, bruttonationalprodukt (BNP),økonomisk vækst, beskæftigelse mv.
-    ## 568                  Forsyningsbalance, Bruttonationalprodukt (BNP), beskæftigelse mv.
-    ## 573                          1-2.1.1 Produktion, BNP og indkomstdannelse (hovedposter)
-    ## 576                                        1-2.1.1 Produktion, BNP og indkomstdannelse
-    ## 579                             1-2.1.1 Produktion, BNP og indkomstdannelse (oversigt)
-    ## 582                                                   1 Produktion og BNP (detaljeret)
-    ## 651                                        1-2.1.1 Produktion, BNP og indkomstdannelse
-    ## 652                           Versionstabel NRHP - Produktion, BNP og indkomstdannelse
-    ## 1300                                                        FoU udgifter i pct. af BNP
+    ## 569  Forsyningsbalance, bruttonationalprodukt (BNP),økonomisk vækst, beskæftigelse mv.
+    ## 573                  Forsyningsbalance, Bruttonationalprodukt (BNP), beskæftigelse mv.
+    ## 578                          1-2.1.1 Produktion, BNP og indkomstdannelse (hovedposter)
+    ## 581                                        1-2.1.1 Produktion, BNP og indkomstdannelse
+    ## 584                             1-2.1.1 Produktion, BNP og indkomstdannelse (oversigt)
+    ## 587                                                   1 Produktion og BNP (detaljeret)
+    ## 656                                        1-2.1.1 Produktion, BNP og indkomstdannelse
+    ## 657                           Versionstabel NRHP - Produktion, BNP og indkomstdannelse
+    ## 1223                                                        FoU udgifter i pct. af BNP
     ##             unit             updated firstPeriod latestPeriod active
-    ## 564            - 2024-10-03T08:00:00        1966         2023   TRUE
-    ## 568            - 2024-11-20T08:00:00      1990K1       2024K3   TRUE
-    ## 573     Mio. kr. 2024-06-28T08:00:00        1966         2023   TRUE
-    ## 576     Mio. kr. 2024-11-20T08:00:00      1990K1       2024K3   TRUE
-    ## 579     Mio. kr. 2024-06-28T08:00:00        1995         2023   TRUE
-    ## 582     Mio. kr. 2024-06-28T08:00:00        1995         2023   TRUE
-    ## 651            - 2024-10-28T08:00:00        1993         2023   TRUE
-    ## 652            - 2024-10-28T08:00:00        1993         2023   TRUE
-    ## 1300 Pct. af bnp 2023-12-14T08:00:00        1997         2022   TRUE
+    ## 569            - 2025-02-20T08:00:00        1966         2024   TRUE
+    ## 573            - 2025-02-20T08:00:00      1990K1       2024K4   TRUE
+    ## 578     Mio. kr. 2025-02-20T08:00:00        1966         2024   TRUE
+    ## 581     Mio. kr. 2025-02-20T08:00:00      1990K1       2024K4   TRUE
+    ## 584     Mio. kr. 2025-02-20T08:00:00        1995         2024   TRUE
+    ## 587     Mio. kr. 2024-06-28T08:00:00        1995         2023   TRUE
+    ## 656            - 2024-10-28T08:00:00        1993         2023   TRUE
+    ## 657            - 2024-10-28T08:00:00        1993         2023   TRUE
+    ## 1223 Pct. af bnp 2023-12-14T08:00:00        1997         2022   TRUE
     ##                                          variables
-    ## 564                    transaktion, prisenhed, tid
-    ## 568  transaktion, prisenhed, sæsonkorrigering, tid
-    ## 573                    transaktion, prisenhed, tid
-    ## 576  transaktion, prisenhed, sæsonkorrigering, tid
-    ## 579                    transaktion, prisenhed, tid
-    ## 582                    transaktion, prisenhed, tid
-    ## 651            område, transaktion, prisenhed, tid
-    ## 652   version, område, transaktion, prisenhed, tid
-    ## 1300                               pct af BNP, tid
+    ## 569                    transaktion, prisenhed, tid
+    ## 573  transaktion, prisenhed, sæsonkorrigering, tid
+    ## 578                    transaktion, prisenhed, tid
+    ## 581  transaktion, prisenhed, sæsonkorrigering, tid
+    ## 584                    transaktion, prisenhed, tid
+    ## 587                    transaktion, prisenhed, tid
+    ## 656            område, transaktion, prisenhed, tid
+    ## 657   version, område, transaktion, prisenhed, tid
+    ## 1223                               pct af BNP, tid
 
 ## Download the tables
 
@@ -135,19 +137,19 @@ head(dst_get_tables(lang = "da"))
 ```
 
     ##         id                            text  unit             updated
-    ## 1   FOLK1A Befolkningen den 1. i kvartalet Antal 2024-11-11T08:00:00
-    ## 2  FOLK1AM   Befolkningen den 1. i måneden Antal 2024-12-10T08:00:00
-    ## 3  BEFOLK1          Befolkningen 1. januar Antal 2024-02-12T08:00:00
-    ## 4  BEFOLK2          Befolkningen 1. januar Antal 2024-02-12T08:00:00
-    ## 5    FOLK3          Befolkningen 1. januar Antal 2024-02-12T08:00:00
-    ## 6 FOLK3FOD          Befolkningen 1. januar Antal 2024-02-12T08:00:00
+    ## 1   FOLK1A Befolkningen den 1. i kvartalet Antal 2025-02-11T08:00:00
+    ## 2  FOLK1AM   Befolkningen den 1. i måneden Antal 2025-02-11T08:00:00
+    ## 3  BEFOLK1          Befolkningen 1. januar Antal 2025-02-11T08:00:00
+    ## 4  BEFOLK2          Befolkningen 1. januar Antal 2025-02-11T08:00:00
+    ## 5    FOLK3          Befolkningen 1. januar Antal 2025-02-11T08:00:00
+    ## 6 FOLK3FOD          Befolkningen 1. januar Antal 2025-02-11T08:00:00
     ##   firstPeriod latestPeriod active                             variables
-    ## 1      2008K1       2024K4   TRUE       område,køn,alder,civilstand,tid
-    ## 2     2021M10      2024M11   TRUE                  område,køn,alder,tid
-    ## 3        1971         2024   TRUE              køn,alder,civilstand,tid
-    ## 4        1901         2024   TRUE                         køn,alder,tid
-    ## 5        2008         2024   TRUE fødselsdag,fødselsmåned,fødselsår,tid
-    ## 6        2008         2024   TRUE  fødselsdag,fødselsmåned,fødeland,tid
+    ## 1      2008K1       2025K1   TRUE       område,køn,alder,civilstand,tid
+    ## 2     2021M10      2025M01   TRUE                  område,køn,alder,tid
+    ## 3        1971         2025   TRUE              køn,alder,civilstand,tid
+    ## 4        1901         2025   TRUE                         køn,alder,tid
+    ## 5        2008         2025   TRUE fødselsdag,fødselsmåned,fødselsår,tid
+    ## 6        2008         2025   TRUE  fødselsdag,fødselsmåned,fødeland,tid
 
 ## Meta data
 
@@ -274,7 +276,7 @@ str(dst_get_data(
 ))
 ```
 
-    ## 'data.frame':    172720 obs. of  5 variables:
+    ## Classes 'dkstat_Denmark_municipality_07' and 'data.frame':   175260 obs. of  5 variables:
     ##  $ TID       : POSIXct, format: "2008-01-01" "2008-01-01" ...
     ##  $ CIVILSTAND: chr  "TOT I alt" "TOT I alt" "TOT I alt" "TOT I alt" ...
     ##  $ ALDER     : chr  "IALT Alder i alt" "IALT Alder i alt" "IALT Alder i alt" "IALT Alder i alt" ...
@@ -299,7 +301,7 @@ my_query <- list(
 str(dst_get_data(table = "folk1a", query = my_query, lang = "da"))
 ```
 
-    ## 'data.frame':    272 obs. of  4 variables:
+    ## Classes 'dkstat_Denmark_municipality_07' and 'data.frame':   276 obs. of  4 variables:
     ##  $ OMRÅDE    : chr  "000 Hele landet" "000 Hele landet" "000 Hele landet" "000 Hele landet" ...
     ##  $ CIVILSTAND: chr  "U Ugift" "U Ugift" "U Ugift" "U Ugift" ...
     ##  $ TID       : POSIXct, format: "2008-01-01" "2008-04-01" ...
@@ -309,7 +311,7 @@ str(dst_get_data(table = "folk1a", query = my_query, lang = "da"))
 str(dst_get_data(table = "AUP01", OMRÅDE = c("Hele landet"), TID = "*", lang = "da"))
 ```
 
-    ## 'data.frame':    88 obs. of  3 variables:
+    ## Classes 'dkstat_Denmark_municipality_07' and 'data.frame':   90 obs. of  3 variables:
     ##  $ OMRÅDE: chr  "000 Hele landet" "000 Hele landet" "000 Hele landet" "000 Hele landet" ...
     ##  $ TID   : POSIXct, format: "2017-07-01" "2017-08-01" ...
     ##  $ value : num  4 4.1 3.9 4 4 4.1 4.2 4.2 4.1 3.7 ...

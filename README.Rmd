@@ -9,6 +9,7 @@ output: github_document
 [![rOG-badge](https://ropengov.github.io/rogtemplate/reference/figures/ropengov-badge.svg)](http://ropengov.org/)
 [![Codecov test coverage](https://codecov.io/gh/ropengov/dkstat/graph/badge.svg)](https://app.codecov.io/gh/ropengov/dkstat)
 [![R-CMD-check](https://github.com/rOpenGov/dkstat/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rOpenGov/dkstat/actions/workflows/R-CMD-check.yaml)
+[![dkstat status badge](https://ropengov.r-universe.dev/dkstat/badges/version)](https://ropengov.r-universe.dev/dkstat)
 <!-- badges: end -->
 
 This package connects to the [StatBank](http://www.statistikbanken.dk/statbank5a/) API from [Statistics Denmark](http://www.dst.dk).
