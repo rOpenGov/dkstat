@@ -25,7 +25,10 @@ Suggests:
     knitr,
     rmarkdown,
     testthat,
-    dplyr
+    dplyr,
+    geodk
+Remotes:
+    rOpenGov/geodk
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 Config/testthat/edition: 3
