@@ -1,3 +1,10 @@
+# dkstat v0.0.0.9002 (2025-02-25)
+
+* Added tech spec for `{geodk}` integration.
+* Implemented `{dkstat}` side of the integration with `{geodk}`.
+* `dst_meta()` now has `geo` option to fetch geographic metadata. The default is `FALSE` thus no changes to the previous behaviour.
+* The cached table list has been updated to reflect the table availability on 2025-02-25.
+
 # dkstat v0.0.0.9001 (2024-12-10)
 
 * Use tidyverse conventions for versioning
