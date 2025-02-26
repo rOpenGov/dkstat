@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup, include = FALSE, eval = TRUE}
+```{r setup, include = FALSE, eval = FALSE}
 library(dkstat)
 library(geodk)
 library(tidyverse)
@@ -46,10 +46,17 @@ dkstat::dst_get_all_data("laby04") |>
 
 When accessing data from a table, e.g. "laby04" there is no obvious way to know what column is geographic.
 
-```{r}
+```{r tail, eval = FALSE}
 dkstat::dst_get_all_data("laby01") |> 
   dplyr::distinct(KOMGRP, .keep_all = TRUE) |> 
   tail()
+#>                  KOMGRP           BEVÆGELSE        TID value
+#> 100   846 Mariagerfjord B04 Fødselsoverskud 2007-01-01  -0.3
+#> 101           773 Morsø B04 Fødselsoverskud 2007-01-01  -1.3
+#> 102          840 Rebild B04 Fødselsoverskud 2007-01-01   1.7
+#> 103         787 Thisted B04 Fødselsoverskud 2007-01-01  -1.6
+#> 104 820 Vesthimmerlands B04 Fødselsoverskud 2007-01-01  -0.8
+#> 105         851 Aalborg B04 Fødselsoverskud 2007-01-01   1.6
 ```
 
 When looking at the above tail, I (and probably you, as well) can recognise that the `OMRÅDE` column is the geographic one.
