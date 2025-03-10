@@ -20,7 +20,8 @@ Imports:
     httr,
     jsonlite,
     lubridate,
-    stringr
+    stringr,
+    cli
 Suggests:
     knitr,
     rmarkdown,

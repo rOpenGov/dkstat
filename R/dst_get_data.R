@@ -92,10 +92,10 @@ dst_get_data <- function(table,
 
   # Make sure the returned status is OK
   if (httr::status_code(dst_data) == 404 && table %in% dkstat::tables$id) {
-    stop("The resource could not be reached.
-         Please submit an issue on https://github.com/rOpenGov/dkstat/issues")
+    cli::cli_abort("The resource could not be reached.
+         Please submit an issue on {.url {'https://github.com/rOpenGov/dkstat/issues'}}")
   } else if (httr::status_code(dst_data) == 404) {
-    stop("The resource you requested have not been found.
+    cli::cli_abort("The resource you requested have not been found.
         Please make sure that the table is in `tables`")
   } else if (httr::status_code(dst_data) != 200) {
     stop(httr::content(dst_data, encoding = "UTF-8")$message)
