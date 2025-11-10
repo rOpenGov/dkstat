@@ -1,0 +1,188 @@
+# Technical specification for intergration with {geodk}
+
+## What is this?
+
+This documents the technical specification for the integration between
+[dkstat](https://ropengov.github.io/dkstat/) and
+[geodk](https://ropengov.github.io/geodk/). It can be found on this page
+and in [the `{geodk}`
+documentation](https://ropengov.github.io/geodk/articles/tech-specs-for-dkstat.html).
+vignette(“tech-specs-for-dkstat”, package = “geodk”).
+
+### Why would you want to read this?
+
+I honestly don’t know. This document is written mostly for me
+[(Aleksander)](https://aleksanderbl.dk) and contributors to use as a
+reference when maintaining this integration. If you have any interest in
+the inner workings of how these two packages interact, then please do
+read on.
+
+## Integration usage
+
+A thorough usage guide can be found in vignette(“geodk”, package =
+“dkstat”), but below I will provide a technical walkthrough of the
+integration.
+
+### Main goal
+
+The main goal of the integration between
+[dkstat](https://ropengov.github.io/dkstat/) and
+[geodk](https://ropengov.github.io/geodk/) is to be able to run the
+following code and have meaningful geographic information added to the
+statistics.
+
+``` r
+dkstat::dst_get_all_data("laby04") |> 
+  geodk::geodk_enrich() # This function name is still debatable.
+```
+
+### Problem description
+
+When accessing data from a table, e.g. “laby04” there is no obvious way
+to know what column is geographic.
+
+``` r
+dkstat::dst_get_all_data("laby01") |> 
+  dplyr::distinct(KOMGRP, .keep_all = TRUE) |> 
+  tail()
+#>                  KOMGRP           BEVÆGELSE        TID value
+#> 100   846 Mariagerfjord B04 Fødselsoverskud 2007-01-01  -0.3
+#> 101           773 Morsø B04 Fødselsoverskud 2007-01-01  -1.3
+#> 102          840 Rebild B04 Fødselsoverskud 2007-01-01   1.7
+#> 103         787 Thisted B04 Fødselsoverskud 2007-01-01  -1.6
+#> 104 820 Vesthimmerlands B04 Fødselsoverskud 2007-01-01  -0.8
+#> 105         851 Aalborg B04 Fødselsoverskud 2007-01-01   1.6
+```
+
+When looking at the above tail, I (and probably you, as well) can
+recognise that the `OMRÅDE` column is the geographic one.
+
+#### Tables with multiple geographic levels
+
+Some tables, e.g. “laby04” has multiple geographic levels. This table
+has a grouping of municipalities and then the individual municipalities.
+To ensure that the individuals *and* groups are enriched properly, we
+have to take the different levels into account in the method.
+
+## S3 methods
+
+Below you can find the description of each S3-class that is used
+(/abused) to enrich the statistical data with geographic information. It
+is sectioned by the geographic grouping of the dataset. Before we dive
+into the specific classes, I will first outline the general idea. For
+more information on the specific terminology used, please consult
+Wickham (2019).
+
+### Classes
+
+Each type of geographic variable has its own S3 class. The class is
+determined by what observations is included in the variable. The
+class-assignment is done by a series of custom class-constructors called
+`new_dkstat_*()`. One example is `new_dkstat_Denmark_municipality_07()`
+which assigns the S3 class `dkstat_Denmark_municipality_07` to a
+dataset. The class is assigned “after the fact”, as Wickham calls it,
+ensuring that the usual behaviour of a data.frame is preserved, through
+inheritance for all the functions that don’t know about these special
+classes (e.g. the [dplyr](https://dplyr.tidyverse.org) functions). Thus,
+the dkstat-classes are subclasses of `data.frame`. The class names are
+derived from the API and maps 1:1 to the `map` value that is returned
+for geographic variables.
+
+### Method dispatch
+
+The S3 generic can be found in
+[`geodk::geodk_enrich()`](https://ropengov.github.io/geodk/reference/geodk_enrich.html).
+The individual methods also live in
+[geodk](https://ropengov.github.io/geodk/). This is to not take on
+[geodk](https://ropengov.github.io/geodk/) as a dependency in
+[dkstat](https://ropengov.github.io/dkstat/). The S3 method for the
+municipality group (Denmark_municipality_07) from above is called
+`geodk_enrich.dkstat_Denmark_municipality_07()`. Please [open an
+issue](https://github.com/rOpenGov/geodk/issues) if you would like to
+help add a method from another data source.
+
+## Custom classes
+
+The API provides 14 different map-levels from which I have based the
+classes. This makes it very easy to add the right one. In
+[dkstat](https://ropengov.github.io/dkstat/) `data-raw/dst_map.R` you
+can find a script that checks all tables for *map* variables and adds
+each new one to a list. This gives the below vector.
+
+``` r
+#> [1] "Denmark_municipality_07"             "Verden_dk2"                         
+#> [3] "denmark_cities_19"                   "denmark_parish_23_4c"               
+#> [5] "denmark_municipalitygroups_24"       "Denmark_region_07"                  
+#> [7] "Denmark_rural_07"                    "denmark_multimember_constituency_23"
+#> [9] "denmark_deanary_23"                  "europe_dk"                          
+#> [11] "Verden_dk"                           "Europa_DK3"                         
+#> [13] "Denmark_county"                      "Verden_dk4"          
+```
+
+Some of the geographic levels, such as “Verden_dk” includes other
+countries. This data is not available from
+[geodk](https://ropengov.github.io/geodk/) thus leading to a message for
+the user informing them of this and then asking if it should add
+geometry for Denmark.
+
+### Denmark_municipality_07 - Municipalities and groups
+
+The municipality grouping that are specified by Statistics Denmark are
+described [on this
+website](https://www.dst.dk/da/Statistik/dokumentation/nomenklaturer/kommunegrupper).
+This grouping includes both the individual municipality and five
+groupings. Take a look at the link if you would like to learn more. In
+the [geodk](https://ropengov.github.io/geodk/) backend I have created a
+list containing all the municipality names with both Statistics
+Denmark-naming and geodk-naming. In addition to that, the list is
+ordered by the municipality grouping.
+
+This grouping is assigned the `dkstat_Denmark_municipality_07` class in
+addition to the `data.frame` class it already has.
+
+The method for `dkstat_Denmark_municipality_07` first filters the
+groupings from the individual municipalities. A list of the individual
+municipalities and groupings, along with their specific ids is stored in
+[geodk](https://ropengov.github.io/geodk/). It is not exported to the
+user.
+
+After filtering, it assigns the individual municipality geometries. The
+grouping geometries are also assigned as well as a column indicating the
+geographic nature of the observation - Is it a overall grouping or an
+individual municipality?
+
+The municipalities that make up the groupings are split per group and
+run through
+[`sf::st_union()`](https://r-spatial.github.io/sf/reference/geos_combine.html)
+to be returned as a `sf` geometry per group.
+
+### Verden_dk2
+
+### denmark_cities_19
+
+### denmark_parish_23_4c
+
+### denmark_municipalitygroups_24
+
+### Denmark_region_07
+
+### Denmark_rural_07
+
+### denmark_multimember_constituency_23
+
+### denmark_deanary_23
+
+### europe_dk
+
+### Verden_dk
+
+### Europa_DK3
+
+### Denmark_county
+
+### Verden_dk4
+
+## References
+
+Wickham, Hadley. 2019. *Advanced r, Second Edition*. 2nd ed. Chapman &
+Hall/CRC the r Series. Boca Raton, FL: CRC Press.
