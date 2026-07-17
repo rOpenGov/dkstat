@@ -22,6 +22,7 @@ You can install [dkstat](https://ropengov.github.io/dkstat/) from
 r-universe with:
 
 ``` r
+
 install.packages(
   "dkstat",
   repos = c(
@@ -36,6 +37,7 @@ You can install the latest development version of
 [GitHub](https://github.com/rOpenGov/dkstat) with:
 
 ``` r
+
 # install.packages("devtools")
 devtools::install_github("rOpenGov/dkstat")
 ```
@@ -64,6 +66,7 @@ requesting data from the StatBank and the structure of the output.
 First, we’ll load the package:
 
 ``` r
+
 library(dkstat)
 ```
 
@@ -74,6 +77,7 @@ The search function let’s you.. OK, you might know this already.
 Here I search for gdp in the text field of the tables.
 
 ``` r
+
 dst_search(string = "bnp", field = "text")
 ```
 
@@ -126,6 +130,7 @@ The dst_get_tables function downloads all the available tables that the
 search function use when searching for a word or a phrase.
 
 ``` r
+
 head(dst_get_tables(lang = "da"))
 ```
 
@@ -158,6 +163,7 @@ table](http://www.statistikbanken.dk/AULAAR). The AULAAR table has net
 unemployment numbers.
 
 ``` r
+
 aulaar_meta <- dst_meta(table = "AULAAR", lang = "da")
 ```
 
@@ -169,6 +175,7 @@ variables - values - basic_query
 Let’s see what the basics contains:
 
 ``` r
+
 aulaar_meta$basics
 ```
 
@@ -203,6 +210,7 @@ the ID’s where the elimination columns is equal to FALSE. The IDs where
 eliminnation is equal FALSE are mandatory.
 
 ``` r
+
 aulaar_meta$variables
 ```
 
@@ -219,6 +227,7 @@ The values is a list object of all the values in each variable. You use
 the text column to construct your final query:
 
 ``` r
+
 str(aulaar_meta$values)
 ```
 
@@ -241,6 +250,7 @@ You need to build your query based on the text column that each variable
 contains in the meta_data\$values list.
 
 ``` r
+
 aulaar <- dst_get_data(
   table = "AULAAR", KØN = "Total", PERPCT = "Per cent of the labour force", Tid = 2013,
   lang = "en"
@@ -266,6 +276,7 @@ ineffecient.
 Let’s query the statbank using more than one value for each variable.
 
 ``` r
+
 folk1a_meta <- dst_meta("folk1a", lang = "da")
 
 str(dst_get_data(
@@ -297,6 +308,7 @@ You can use the star as a alternative to writing all the text values for
 the variable.
 
 ``` r
+
 my_query <- list(
   OMRÅDE = c("Hele landet", "København", "Frederiksberg", "Odense"),
   CIVILSTAND = "Ugift",
@@ -315,6 +327,7 @@ str(dst_get_data(table = "folk1a", query = my_query, lang = "da"))
 ```
 
 ``` r
+
 str(dst_get_data(table = "AUP01", OMRÅDE = c("Hele landet"), TID = "*", lang = "da"))
 ```
 

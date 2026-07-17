@@ -32,6 +32,7 @@ following code and have meaningful geographic information added to the
 statistics.
 
 ``` r
+
 dkstat::dst_get_all_data("laby04") |> 
   geodk::geodk_enrich() # This function name is still debatable.
 ```
@@ -42,6 +43,7 @@ When accessing data from a table, e.g. “laby04” there is no obvious way
 to know what column is geographic.
 
 ``` r
+
 dkstat::dst_get_all_data("laby01") |> 
   dplyr::distinct(KOMGRP, .keep_all = TRUE) |> 
   tail()
@@ -110,6 +112,7 @@ can find a script that checks all tables for *map* variables and adds
 each new one to a list. This gives the below vector.
 
 ``` r
+
 #> [1] "Denmark_municipality_07"             "Verden_dk2"                         
 #> [3] "denmark_cities_19"                   "denmark_parish_23_4c"               
 #> [5] "denmark_municipalitygroups_24"       "Denmark_region_07"                  
@@ -185,4 +188,4 @@ to be returned as a `sf` geometry per group.
 ## References
 
 Wickham, Hadley. 2019. *Advanced r, Second Edition*. 2nd ed. Chapman &
-Hall/CRC the r Series. Boca Raton, FL: CRC Press.
+Hall/CRC the r Series. CRC Press.
